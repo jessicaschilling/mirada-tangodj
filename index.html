@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Mirada</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+  <!-- All of the Node.js APIs are available in this renderer process. -->
+  	<head>
+	<meta charset="UTF-8" >
+	<link href="./sass/index.scss" rel="stylesheet" />
+	<script type="text/javascript" src="live.js"></script>
+	<title>Mirada</title>
+   	</head>
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
-</html>
+      <body class="">
+
+	<div class=""></div>
+
+	<div class="topcard Dark">
+    	<h1 class="Dark">Vals</h1>
+    	<h2>Francisco Canaro</h2>
+    	<h3>Salud, Dinero y Amor (1939 - Francisco Amor)</h3>
+	</div>
+
+	<div class="bottomcard Dark">
+    	<h4>Rodolfo Biagi <strong>Tango</strong></h4>
+	</div>
+
+	<div class="ribbon Dark">
+    	<h5>1</h5>
+    	<h6>3</h6>
+	</div>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./assets/scripts/renderer.js')
+  </script>
+
+ 	</body>
+	</html>
