@@ -1,4 +1,13 @@
-/* quicksand-300 - latin */
+// Colors (default, dark)
+$screenBackground: #727272 !default;
+$nowPlayingBackground: #2C2C2C !default;
+$nowPlayingText: #FFFFFF !default;
+$nextTandaBackground: #6C1515 !default;
+$nextTandaText: #FFFFFF !default;
+$ribbonBackground: #C1C1C1 !default;
+$ribbonText: #6C1515 !default;
+
+// Fonts
 @font-face {
   font-family: 'Quicksand';
   font-style: normal;
@@ -7,8 +16,6 @@
        url('../fonts/quicksand-v7-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/quicksand-v7-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
-/* quicksand-regular - latin */
 @font-face {
   font-family: 'Quicksand';
   font-style: normal;
@@ -17,8 +24,6 @@
        url('../fonts/quicksand-v7-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/quicksand-v7-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
-/* quicksand-500 - latin */
 @font-face {
   font-family: 'Quicksand';
   font-style: normal;
@@ -27,8 +32,6 @@
        url('../fonts/quicksand-v7-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/quicksand-v7-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
-
-/* quicksand-700 - latin */
 @font-face {
   font-family: 'Quicksand';
   font-style: normal;
@@ -39,7 +42,7 @@
 }
 
 body {
-    background-color: #727272;
+    background-color: $screenBackground;
     font-family:"Quicksand",arial,helvetica,sans-serif;
     margin: 3vh;
     padding: 0;
@@ -143,10 +146,7 @@ h1 {
     text-transform: uppercase;
     line-height: 90%;
     margin-bottom: 16px;
-}
-
-h1.Dark {
-    color: #FFFFFF;
+    color: $nowPlayingBackground;
 }
 
 h1.Light {
@@ -209,11 +209,8 @@ h6::before {
     -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
     -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
     box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-}
-
-.topcard.Dark {
-    background-color: #2C2C2C;
-    color:#ffffff;
+    background-color: $nowPlayingBackground;
+    color: $nowPlayingText;
 }
 
 .topcard.Light {
@@ -224,7 +221,6 @@ h6::before {
     height: 12vh;
     margin: 0;
     padding: 2vh;
-    color: #ffffff;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -233,10 +229,8 @@ h6::before {
     -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
     -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
     box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-}
-
-.bottomcard.Dark {
-     background-color: #6C1515;
+    background-color: $nextTandaBackground;
+    color: $nextTandaText;
 }
 
 .bottomcard.Light {
@@ -257,6 +251,8 @@ h6::before {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    background-color: $ribbonBackground;
+    color: $ribbonText;
 }
 
 .ribbon:before, .ribbon:after {
@@ -267,10 +263,6 @@ h6::before {
     height: 0;
 }
 
-.ribbon.Dark {
-    background-color: #C1C1C1;
-    color: #6C1515;
-}
 
 .ribbon.Light {
     background-color: #990000;
