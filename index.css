@@ -1,0 +1,249 @@
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Quicksand Light"), local("Quicksand-Light"), url("../fonts/quicksand-v7-latin-300.woff2") format("woff2"), url("../fonts/quicksand-v7-latin-300.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ }
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Quicksand Regular"), local("Quicksand-Regular"), url("../fonts/quicksand-v7-latin-regular.woff2") format("woff2"), url("../fonts/quicksand-v7-latin-regular.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ }
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Quicksand Medium"), local("Quicksand-Medium"), url("../fonts/quicksand-v7-latin-500.woff2") format("woff2"), url("../fonts/quicksand-v7-latin-500.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ }
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Quicksand Bold"), local("Quicksand-Bold"), url("../fonts/quicksand-v7-latin-700.woff2") format("woff2"), url("../fonts/quicksand-v7-latin-700.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ }
+
+body {
+  background-color: #727272;
+  font-family: "Quicksand",arial,helvetica,sans-serif;
+  margin: 3vh;
+  padding: 0;
+  height: 94vh;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  /* Firefox */
+  -webkit-animation: fadein 1s;
+  /* Safari and Chrome */
+  -o-animation: fadein 1s;
+  /* Opera */ }
+
+.stopped {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  /* Stay in place */
+  z-index: 22222;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: black;
+  /* Black fallback color */
+  background-color: black;
+  /* Black w/opacity */
+  background: url(cabeceo-background.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */ }
+
+body.interstitial .bottomcard, body.interstitial .ribbon, body.interstitial h3 {
+  display: none; }
+
+body.announcement .bottomcard, body.announcement .ribbon, body.announcement h3 {
+  display: none; }
+
+body.lasttanda h4::before, body.lasttanda .ribbon {
+  display: none; }
+
+body.interstitial .topcard, body.announcement .topcard {
+  height: 86vh;
+  padding: 4vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+body.interstitial h2, body.announcement h2 {
+  padding-top: 5vh; }
+
+body.interstitial h2::before {
+  font-weight: 400;
+  content: "Next Tanda: "; }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 110%; }
+
+h1 {
+  font-size: 7.5vmax;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 90%;
+  margin-bottom: 16px;
+  color: #2C2C2C; }
+
+h1.Light {
+  color: #990000; }
+
+h2 {
+  font-size: 5.6vmax;
+  font-weight: 800;
+  margin-bottom: 16px; }
+
+h3 {
+  font-size: 4vmax;
+  font-weight: 400; }
+
+h4 {
+  font-size: 3.5vmax;
+  font-weight: 400; }
+
+h4::before {
+  content: "Next Tanda: ";
+  font-weight: 800; }
+
+h5, h6 {
+  margin: 0;
+  font-size: 16vh; }
+
+h5 {
+  line-height: 70%; }
+
+h6 {
+  line-height: 55%; }
+
+h5::before {
+  content: "song\a";
+  font-size: 3.8vmax;
+  font-weight: 300; }
+
+h6::before {
+  content: "of\a";
+  font-size: 3.8vmax;
+  font-weight: 300;
+  line-height: 200%; }
+
+.topcard {
+  height: 67vh;
+  padding: 4vh 22vw 4vh 4vh;
+  margin: 0 0 3vh 0;
+  background-color: #dedede;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  background-color: #2C2C2C;
+  color: #FFFFFF; }
+
+.topcard.Light {
+  background-color: #efefef; }
+
+.bottomcard {
+  height: 12vh;
+  margin: 0;
+  padding: 2vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.37);
+  background-color: #6C1515;
+  color: #FFFFFF; }
+
+.bottomcard.Light {
+  background-color: #2C2C2C; }
+
+.ribbon {
+  position: absolute;
+  right: 6vh;
+  top: 3vh;
+  width: 16vw;
+  height: 50vh;
+  padding: 1vh;
+  word-spacing: 100000px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #C1C1C1;
+  color: #6C1515; }
+
+.ribbon:before, .ribbon:after {
+  content: "";
+  position: absolute;
+  bottom: -1.4em;
+  width: 0;
+  height: 0; }
+
+.ribbon.Light {
+  background-color: #990000;
+  color: #ffffff; }
+
+.ribbon.Light:before {
+  left: 0;
+  border-right: 9vw solid transparent;
+  border-top: 1.5em solid #990000; }
+
+.ribbon.Light:after {
+  right: 0;
+  border-left: 9vw solid transparent;
+  border-top: 1.5em solid #990000; }
+
+.ribbon.Dark:before {
+  left: 0;
+  border-right: 9vw solid transparent;
+  border-top: 1.5em solid #C1C1C1; }
+
+.ribbon.Dark:after {
+  right: 0;
+  border-left: 9vw solid transparent;
+  border-top: 1.5em solid #C1C1C1; }
+
+/*# sourceMappingURL=index.map */
