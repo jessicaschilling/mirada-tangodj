@@ -1,6 +1,6 @@
-# electron-sass-test
+# test
 
-> My supreme app
+> My world-class app
 
 
 ## Dev
