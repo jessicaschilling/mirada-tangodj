@@ -1,57 +1,23 @@
 {
-  "name": "test",
-  "productName": "Test",
-  "version": "0.0.0",
-  "description": "My world-class app",
-  "license": "MIT",
-  "repository": "jessicaschilling/test",
-  "author": {
-    "name": "Jessica Schilling",
-    "email": "jessica.schilling@libertymutual.com",
-    "url": "foobar.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "electronVersion": "0.34.0",
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
   "scripts": {
-    "test": "xo",
-    "build": "export NODE_ENV='production'; electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion",
-    "build-sass": "node-sass --include-path src/styles --source-map index.map src/styles/index.scss index.css",
-    "watch-sass": "nodemon -e scss -x \"npm run build-sass\"",
-    "start": "export NODE_ENV='dev'; electron . & webpack --watch --progress --colors --output-source-map-file & npm run watch-sass"
+    "start": "electron ."
   },
-  "files": [
-    "index.js",
-    "index.html",
-    "index.css"
-  ],
+  "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
-    "electron-app"
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
   ],
-  "dependencies": {
-    "electron-debug": "^0.2.1"
-  },
+  "author": "GitHub",
+  "license": "CC0-1.0",
   "devDependencies": {
-    "node-sass": "^3.3.3",
-    "babel-core": "^5.8.25",
-    "babel-loader": "^5.3.2",
-    "browser-sync": "^2.9.6",
-    "browser-sync-webpack-plugin": "^1.0.0",
-    "css-loader": "^0.19.0",
-    "sass-loader": "^2.0.1",
-    "style-loader": "^0.12.4",
-    "webpack": "^1.12.2",
-    "nodemon": "^1.7.0",
-    "electron-packager": "^5.0.0",
-    "electron-prebuilt": "^0.34.0",
-    "xo": "^0.9.0"
-  },
-  "xo": {
-    "esnext": true,
-    "envs": [
-      "node",
-      "browser"
-    ]
+    "electron": "~1.7.8",
+    "electron-prebuilt-compile": "^1.8.2-beta.3"
   }
 }
