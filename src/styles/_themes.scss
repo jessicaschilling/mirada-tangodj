@@ -1,0 +1,111 @@
+// Color variable map to hold the themes
+$config: (
+  themes: (
+
+  // Dark (default)
+  themeDark: (
+    screenBackground: #727272,
+    nowPlayingBackground: #2C2C2C,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #6C1515,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #C1C1C1,
+    ribbonText: #6C1515
+  ),
+
+  // Light
+  themeLight: (
+    screenBackground: #FFFFFF,
+    nowPlayingBackground: #EFEFEF,
+    nowPlayingText: #990000,
+    nextTandaBackground: #2C2C2C,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #990000,
+    ribbonText: #FFFFFF
+  ),
+
+  // Valentine
+  themeValentine: (
+    screenBackground: #E4CDD3,
+    nowPlayingBackground: #5E081E,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #B51A3A,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #E48397,
+    ribbonText: #5E081E
+  ),
+
+  // Halloween
+  themeHalloween: (
+    screenBackground: #4A4A4A,
+    nowPlayingBackground: #000000,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #FCCD67,
+    nextTandaText: #000000,
+    ribbonBackground: #FF7B00,
+    ribbonText: #000000
+  ),
+
+  // Xmas
+  themeXmas: (
+    screenBackground: #D4BEA6,
+    nowPlayingBackground: #2B5116,
+    nowPlayingText: #f0ECE9,
+    nextTandaBackground: #BE2227,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #DDB263,
+    ribbonText: #BE2227
+  )
+
+  )
+);
+
+// map-fetch($map, $keys)
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+  @if ($length > 1) {
+    $rest: ();
+    @for $i from 2 through $length {
+      $rest: append($rest, nth($keys, $i))
+    }
+    @return map-fetch($value, $rest)
+  } @else {
+    @return $value;
+  }
+}
+
+
+
+// Loop for each individual theme
+@each $theme in map-keys(map-get($config, themes)) {
+
+  #background.#{$theme} {
+    background-color: map-fetch($config, themes $theme screenBackground);
+  }
+
+  #nowPlaying.#{$theme} {
+    background-color: map-fetch($config, themes $theme nowPlayingBackground);
+    color: map-fetch($config, themes $theme nowPlayingText);
+  }
+
+  #nextTanda.#{$theme} {
+    background-color: map-fetch($config, themes $theme nextTandaBackground);
+    color: map-fetch($config, themes $theme nextTandaText);
+  }
+
+  #ribbon.#{$theme} {
+    background-color: map-fetch($config, themes $theme ribbonBackground);
+    color: map-fetch($config, themes $theme ribbonText);
+  }
+
+  #ribbon.#{$theme}:before {
+    border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
+  }
+
+  #ribbon.#{$theme}:after {
+    border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
+  }
+
+}
