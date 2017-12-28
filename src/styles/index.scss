@@ -1,48 +1,40 @@
-// Colors (default, dark)
-$screenBackground: #727272 !default;
-$nowPlayingBackground: #2C2C2C !default;
-$nowPlayingText: #FFFFFF !default;
-$nextTandaBackground: #6C1515 !default;
-$nextTandaText: #FFFFFF !default;
-$ribbonBackground: #C1C1C1 !default;
-$ribbonText: #6C1515 !default;
+@import "_themes.scss";
+@import "_fonts.scss";
 
-// Fonts
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Quicksand Light'), local('Quicksand-Light'),
-       url('../fonts/quicksand-v7-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/quicksand-v7-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+//Switcher test
+#switcher {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Quicksand Regular'), local('Quicksand-Regular'),
-       url('../fonts/quicksand-v7-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/quicksand-v7-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Quicksand Medium'), local('Quicksand-Medium'),
-       url('../fonts/quicksand-v7-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/quicksand-v7-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-@font-face {
-  font-family: 'Quicksand';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Quicksand Bold'), local('Quicksand-Bold'),
-       url('../fonts/quicksand-v7-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('../fonts/quicksand-v7-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+#switcher li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 5px 0;
+  border-radius: 30px;
 }
 
+#darkButton {
+  background: gray;
+}
+#lightButton {
+  background: white;
+}
+#valentineButton {
+  background: blue;
+}
+#halloweenButton {
+  background: yellow;
+}
+#xmasButton {
+  background: green;
+}
+
+
+//Global styles
 body {
-    background-color: $screenBackground;
     font-family:"Quicksand",arial,helvetica,sans-serif;
     margin: 3vh;
     padding: 0;
@@ -69,19 +61,19 @@ body {
     transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
-body.interstitial .bottomcard, body.interstitial .ribbon, body.interstitial h3 {
+body.interstitial #nextTanda, body.interstitial #ribbon, body.interstitial h3 {
     display:none;
 }
 
-body.announcement .bottomcard, body.announcement .ribbon, body.announcement h3 {
+body.announcement #nextTanda, body.announcement #ribbon, body.announcement h3 {
     display:none;
 }
 
-body.lasttanda h4::before, body.lasttanda .ribbon {
+body.lasttanda h4::before, body.lasttanda #ribbon {
     display:none;
 }
 
-body.interstitial .topcard, body.announcement .topcard {
+body.interstitial #nowPlaying, body.announcement #nowPlaying {
     height:86vh;
     padding: 4vh;
     text-align:center;
@@ -146,12 +138,8 @@ h1 {
     text-transform: uppercase;
     line-height: 90%;
     margin-bottom: 16px;
-    color: $nowPlayingBackground;
 }
 
-h1.Light {
-    color: #990000;
-}
 
 h2 {
     font-size: 5.6vmax;
@@ -200,24 +188,20 @@ h6::before {
     line-height:200%;
 }
 
-.topcard {
+#nowPlaying, #nextTanda, {
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
+  -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
+  box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
+}
+
+#nowPlaying {
     height: 67vh;
     padding: 4vh 22vw 4vh 4vh;
     margin: 0 0 3vh 0;
-    background-color: #dedede;
-    overflow: hidden;
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    background-color: $nowPlayingBackground;
-    color: $nowPlayingText;
 }
 
-.topcard.Light {
-    background-color: #efefef;
-}
-
-.bottomcard {
+#nextTanda {
     height: 12vh;
     margin: 0;
     padding: 2vh;
@@ -225,24 +209,14 @@ h6::before {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
-    background-color: $nextTandaBackground;
-    color: $nextTandaText;
 }
 
-.bottomcard.Light {
-        background-color: #2C2C2C;
-}
-
-.ribbon {
+#ribbon {
     position: absolute;
     right: 6vh;
     top: 3vh;
     width: 16vw;
-    height: 50vh;
+    height: 55vh;
     padding: 1vh;
     word-spacing: 100000px;
     text-align: center;
@@ -251,11 +225,9 @@ h6::before {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: $ribbonBackground;
-    color: $ribbonText;
 }
 
-.ribbon:before, .ribbon:after {
+#ribbon:before, #ribbon:after {
     content: "";
     position: absolute;
     bottom: -1.4em;
@@ -263,34 +235,12 @@ h6::before {
     height: 0;
 }
 
-
-.ribbon.Light {
-    background-color: #990000;
-    color: #ffffff;
-}
-
-.ribbon.Light:before{
+#ribbon:before{
     left: 0;
     border-right: 9vw solid transparent;
-    border-top: 1.5em solid #990000;
 }
 
-.ribbon.Light:after{
+#ribbon:after{
     right: 0;
     border-left: 9vw solid transparent;
-    border-top: 1.5em solid #990000;
-
-}
-
-.ribbon.Dark:before{
-    left: 0;
-    border-right: 9vw solid transparent;
-    border-top: 1.5em solid #C1C1C1;
-}
-
-.ribbon.Dark:after{
-    right: 0;
-    border-left: 9vw solid transparent;
-    border-top: 1.5em solid #C1C1C1;
-
 }

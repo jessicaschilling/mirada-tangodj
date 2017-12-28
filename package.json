@@ -1,10 +1,10 @@
 {
-  "name": "electron-sass-test",
-  "productName": "ElectronSassTest",
+  "name": "test",
+  "productName": "Test",
   "version": "0.0.0",
-  "description": "My supreme app",
+  "description": "My world-class app",
   "license": "MIT",
-  "repository": "jessicaschilling/electron-sass-test",
+  "repository": "jessicaschilling/test",
   "author": {
     "name": "Jessica Schilling",
     "email": "jessica.schilling@libertymutual.com",
