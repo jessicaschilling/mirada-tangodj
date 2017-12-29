@@ -65,15 +65,50 @@ app.on('ready', function () {
 
   const menuTemplate = [
         {
-            label: 'Electron',
+            label: 'Mirada',
             submenu: [
-                {
-                    label: 'Christmas Style',
-                    click: () => {
-                        console.log('About Clicked');
-                        ['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeXmas";});
+              {
+                  label: 'About Mirada',
+                  click: () => {
+                      console.log('about');
+                  }
+              }, {
+                  type: 'separator'
+              },{
+                  label: 'Themes',
+                  submenu: [
+                    {
+                      label: 'Dark',
+                      click: () => {
+                          console.log('Dark');
+                      }
+                    },
+                    {
+                      label: 'Light',
+                      click: () => {
+                          console.log('Light');
+                      }
+                    },
+                    {
+                      label: 'Valentine',
+                      click: () => {
+                          console.log('Valentine');
+                      }
+                    },
+                    {
+                      label: 'Halloween',
+                      click: () => {
+                          console.log('Halloween');
+                      }
+                    },
+                    {
+                      label: 'Holiday',
+                      click: () => {
+                          console.log('Holiday');
+                      }
                     }
-                }, {
+                  ]
+              }, {
                     type: 'separator'
                 }, {
                     label: 'Quit',
@@ -82,7 +117,28 @@ app.on('ready', function () {
                     }
                 }
             ]
-        }
+        },
+        {
+  label: 'View',
+  submenu: [
+    {role: 'reload'},
+    {role: 'forcereload'},
+    {role: 'toggledevtools'},
+    {type: 'separator'},
+    {role: 'resetzoom'},
+    {role: 'zoomin'},
+    {role: 'zoomout'},
+    {type: 'separator'},
+    {role: 'togglefullscreen'}
+  ]
+},
+{
+  role: 'window',
+  submenu: [
+    {role: 'minimize'},
+    {role: 'zoom'},
+  ]
+},
     ];
     const menu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(menu);
