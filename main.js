@@ -61,85 +61,108 @@ app.on('activate', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+
+// Custom menus
 app.on('ready', function () {
 
   const menuTemplate = [
+    {
+      label: 'Mirada',
+      submenu: [
         {
-            label: 'Mirada',
-            submenu: [
-              {
-                  label: 'About Mirada',
-                  click: () => {
-                      console.log('about');
-                  }
-              }, {
-                  type: 'separator'
-              },{
-                  label: 'Themes',
-                  submenu: [
-                    {
-                      label: 'Dark',
-                      click: () => {
-                          console.log('Dark');
-                      }
-                    },
-                    {
-                      label: 'Light',
-                      click: () => {
-                          console.log('Light');
-                      }
-                    },
-                    {
-                      label: 'Valentine',
-                      click: () => {
-                          console.log('Valentine');
-                      }
-                    },
-                    {
-                      label: 'Halloween',
-                      click: () => {
-                          console.log('Halloween');
-                      }
-                    },
-                    {
-                      label: 'Holiday',
-                      click: () => {
-                          console.log('Holiday');
-                      }
-                    }
-                  ]
-              }, {
-                    type: 'separator'
-                }, {
-                    label: 'Quit',
-                    click: () => {
-                        app.quit();
-                    }
-                }
-            ]
-        },
-        {
-  label: 'View',
-  submenu: [
-    {role: 'reload'},
-    {role: 'forcereload'},
-    {role: 'toggledevtools'},
-    {type: 'separator'},
-    {role: 'resetzoom'},
-    {role: 'zoomin'},
-    {role: 'zoomout'},
-    {type: 'separator'},
-    {role: 'togglefullscreen'}
-  ]
-},
-{
-  role: 'window',
-  submenu: [
-    {role: 'minimize'},
-    {role: 'zoom'},
-  ]
-},
-    ];
-    const menu = Menu.buildFromTemplate(menuTemplate);
-    Menu.setApplicationMenu(menu);
+          label: 'About Mirada',
+          click: () => {
+            console.log('about');
+          }
+        }, {
+          type: 'separator'
+        },{
+          label: 'Themes',
+          submenu: [
+            {
+              label: 'Dark',
+              click: () => {
+                console.log('Dark');
+                new BrowserWindow();
+              }
+            },
+            {
+              label: 'Light',
+              click: () => {
+                console.log('Light');
+              }
+            },
+            {
+              label: 'Valentine',
+              click: () => {
+                console.log('Valentine');
+              }
+            },
+            {
+              label: 'Halloween',
+              click: () => {
+                console.log('Halloween');
+              }
+            },
+            {
+              label: 'Holiday',
+              click: () => {
+                console.log('Holiday');
+              }
+            }
+          ]
+        }, {
+          type: 'separator'
+        }, {
+          role: 'quit'
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {role: 'reload'},
+        {role: 'forcereload'},
+        {role: 'toggledevtools'},
+        {type: 'separator'},
+        {role: 'resetzoom'},
+        {role: 'zoomin'},
+        {role: 'zoomout'},
+        {type: 'separator'},
+        {role: 'togglefullscreen'}
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        {role: 'minimize'},
+        {role: 'zoom'},
+      ]
+    },
+  ];
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
+});
+
+// IPC listener for menu items
+const {ipcMain} = require('electron');
+
+let Foo = {
+    message: "Foo",
+    someData: "Bar"
+};
+
+// Attach listener in the main process with the given ID
+ipcMain.on('request-mainprocess-action', (event, arg) => {
+    // Displays the object sent from the renderer process:
+    //{
+    //    message: "Hi",
+    //    someData: "Let's go"
+    //}
+    console.log(
+        arg
+    );
+
+    // Return some data to the renderer process with the mainprocess-response ID
+    event.sender.send('mainprocess-response', Foo);
 });
