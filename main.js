@@ -3,6 +3,11 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+// IPC listener for menu items
+const {ipcMain} = require('electron')
+
+const dialog = require('electron').dialog
+
 
 const path = require('path')
 const url = require('url')
@@ -61,7 +66,6 @@ app.on('activate', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-
 // Custom menus
 app.on('ready', function () {
 
@@ -72,7 +76,7 @@ app.on('ready', function () {
         {
           label: 'About Mirada',
           click: () => {
-            console.log('about');
+            dialog.showMessageBox({ message: "Mirada v. 2.0, made with love.",buttons: ["OK"] });
           }
         }, {
           type: 'separator'
@@ -82,32 +86,31 @@ app.on('ready', function () {
             {
               label: 'Dark',
               click: () => {
-                console.log('Dark');
-                new BrowserWindow();
+                mainWindow.webContents.executeJavaScript('switchTheme("themeDark");');
               }
             },
             {
               label: 'Light',
               click: () => {
-                console.log('Light');
+                mainWindow.webContents.executeJavaScript('switchTheme("themeLight");');
               }
             },
             {
               label: 'Valentine',
               click: () => {
-                console.log('Valentine');
+                mainWindow.webContents.executeJavaScript('switchTheme("themeValentine");');
               }
             },
             {
               label: 'Halloween',
               click: () => {
-                console.log('Halloween');
+                mainWindow.webContents.executeJavaScript('switchTheme("themeHalloween");');
               }
             },
             {
-              label: 'Holiday',
+              label: 'Christmas',
               click: () => {
-                console.log('Holiday');
+                mainWindow.webContents.executeJavaScript('switchTheme("themeXmas");');
               }
             }
           ]
@@ -142,27 +145,4 @@ app.on('ready', function () {
   ];
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
-});
-
-// IPC listener for menu items
-const {ipcMain} = require('electron');
-
-let Foo = {
-    message: "Foo",
-    someData: "Bar"
-};
-
-// Attach listener in the main process with the given ID
-ipcMain.on('request-mainprocess-action', (event, arg) => {
-    // Displays the object sent from the renderer process:
-    //{
-    //    message: "Hi",
-    //    someData: "Let's go"
-    //}
-    console.log(
-        arg
-    );
-
-    // Return some data to the renderer process with the mainprocess-response ID
-    event.sender.send('mainprocess-response', Foo);
 });
