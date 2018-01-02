@@ -1,23 +1,27 @@
 {
   "name": "Mirada",
-  "version": "1.0.0",
-  "description": "A tango-specific visualizer for iTunes",
+  "version": "2.0.0",
+  "description": "A tango-specific visualizer for iTunes on macOS",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": "https://github.com/jessicaschilling/mirada-standalone",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "mirada",
+    "tango",
+    "tanda",
+    "itunes",
+    "macos"
   ],
   "author": "Jessica Schilling",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8",
     "electron-prebuilt-compile": "^1.8.2-beta.3"
+  },
+  "dependencies": {
+    "applescript": "^1.0.0",
+    "underscore": "^1.8.3"
   }
 }

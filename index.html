@@ -18,6 +18,32 @@
 
   <div id="nextTanda" class="themeDark">
     <h4>Rodolfo Biagi <strong>Tango</strong></h4>
+
+<!--  testing applescript -->
+    <script>
+    var iTunes = require("./js/iTunes");
+
+iTunes.track.title(function (ret, err) {
+	console.log("Track name: " + ret);
+});
+
+iTunes.playpause();
+
+iTunes.volume(function (ret, err) {
+	console.log("Volume: " + ret);
+
+	console.log("Decrease volume -10...");
+	iTunes.volume(ret - 10, function (ret) {
+		console.log("Done.");
+		iTunes.volume(function (ret, err) {
+			console.log("Volume: " + ret);
+		});
+	});
+});
+    </script>
+    <div onclick="iTunes.playpause();">yodude</div>
+<!-- end testing applescript -->
+
   </div>
 
   <div id="ribbon" class="themeDark">
