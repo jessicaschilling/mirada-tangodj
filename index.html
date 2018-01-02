@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="js/themeswitcher.js"></script>
+    <script type="text/javascript" src="js/renderer.js"></script>
     <link rel="stylesheet" href="styles/index.scss">
     <title>Mirada</title>
   </head>
@@ -22,21 +24,6 @@
     <h5>1</h5>
     <h6>3</h6>
   </div>
-
-
-<script type="text/javascript">
-  // Theme switcher (this is called from main.js)
-  function switchTheme(themeName) {
-    ['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = (themeName);});
-  };
-</script>
-
-
-<script>
-  // IPC renderer so the theme menus (and others) can talk to this render window
-  require('./renderer.js');
-  const { ipcRenderer } = require('electron')
-</script>
 
 
   </body>
