@@ -1,63 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Mirada</title>
-		<link rel="stylesheet" href="index.css">
-	</head>
-	<body id="background" class="themeDark">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/index.scss">
+    <title>Mirada</title>
+  </head>
 
-<div id="nowPlaying" class="themeDark">
-	<h1>Vals</h1>
-	<h2>Francisco Canaro</h2>
-	<h3>Salud, Dinero y Amor (1939 - Francisco Amor)</h3>
-	<ul id="switcher">
-  <li id="darkButton"></li>
-  <li id="lightButton"></li>
-  <li id="valentineButton"></li>
-	<li id="halloweenButton"></li>
-	<li id="xmasButton"></li>
-</ul>
-</div>
+  <body id="background" class="themeDark">
 
-<div id="nextTanda" class="themeDark">
-	<h4>Rodolfo Biagi <strong>Tango</strong></h4>
-</div>
+  <div id="nowPlaying" class="themeDark">
+    <h1>Vals</h1>
+    <h2>Francisco Canaro</h2>
+    <h3>Salud, Dinero y Amor (1939 - Francisco Amor)</h3>
+  </div>
 
-<div id="ribbon" class="themeDark">
-	<h5>1</h5>
-	<h6>3</h6>
-</div>
-		<script type="text/javascript" src="build/main.js"></script>
+  <div id="nextTanda" class="themeDark">
+    <h4>Rodolfo Biagi <strong>Tango</strong></h4>
+  </div>
+
+  <div id="ribbon" class="themeDark">
+    <h5>1</h5>
+    <h6>3</h6>
+  </div>
+
 
 <script type="text/javascript">
-	document.getElementById('darkButton').onclick = switchDark;
-	document.getElementById('lightButton').onclick = switchLight;
-	document.getElementById('valentineButton').onclick = switchValentine;
-	document.getElementById('halloweenButton').onclick = switchHalloween;
-	document.getElementById('xmasButton').onclick = switchXmas;
-
-function switchDark() {
-	['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeDark";});
-}
-
-function switchLight() {
-	['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeLight";});
-}
-
-function switchValentine() {
-	['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeValentine";});
-}
-
-function switchHalloween() {
-	['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeHalloween";});
-}
-
-function switchXmas() {
-	['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = "themeXmas";});
-}
+  // Theme switcher (this is called from main.js)
+  function switchTheme(themeName) {
+    ['background', 'nowPlaying', 'nextTanda', 'ribbon'].forEach(function( id ) {document.getElementById( id ).className = (themeName);});
+  };
 </script>
 
 
-</body>
+<script>
+  // IPC renderer so the theme menus (and others) can talk to this render window
+  require('./renderer.js');
+  const { ipcRenderer } = require('electron')
+</script>
+
+
+  </body>
 </html>
