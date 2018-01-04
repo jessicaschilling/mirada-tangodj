@@ -11,19 +11,76 @@
   <body id="background" class="themeDark">
 
   <div id="nowPlaying" class="themeDark">
-    <h1>Vals</h1>
-    <h2>Francisco Canaro</h2>
-    <h3>Salud, Dinero y Amor (1939 - Francisco Amor)</h3>
+    <div id="nowPlayingGenre">Vals</div>
+    <div id="nowPlayingArtist">Francisco Canaro</div>
+    <div id="nowPlayingTitle">Salud, Dinero y Amor (1939 - Francisco Amor)</div>
   </div>
 
   <div id="nextTanda" class="themeDark">
-    <h4>Rodolfo Biagi <strong>Tango</strong></h4>
+    <div id="nextTandaArtist">Rodolfo Biagi <strong>Tango</strong></div>
+
   </div>
 
   <div id="ribbon" class="themeDark">
-    <h5>1</h5>
-    <h6>3</h6>
+    <div id="songX">1</div>
+    <div id="songY">3</div>
   </div>
+
+
+
+<!-- Temporary holding pen for importing data from iTunes, this should go in an external file -->
+<!-- Plus need to determine whether to ditch iTunes.js -->
+<script>
+var applescript = require('applescript');
+
+// nowPlayingTitle
+var nowPlayingTitle = 'tell application "iTunes" to get name of current track';
+
+applescript.execString(nowPlayingTitle, function(err, rtn) {
+  if (err) {
+  }
+  if (rtn) {
+      document.getElementById("nowPlayingTitle").innerHTML = (rtn) ;
+  }
+});
+
+// nowPlayingGenre
+var nowPlayingGenre = 'tell application "iTunes" to get genre of current track';
+
+applescript.execString(nowPlayingGenre, function(err, rtn) {
+  if (err) {
+  }
+  if (rtn) {
+      document.getElementById("nowPlayingGenre").innerHTML = (rtn) ;
+  }
+});
+
+// nowPlayingArtist
+var nowPlayingArtist = 'tell application "iTunes" to get artist of current track';
+
+applescript.execString(nowPlayingArtist, function(err, rtn) {
+  if (err) {
+  }
+  if (rtn) {
+      document.getElementById("nowPlayingArtist").innerHTML = (rtn) ;
+  }
+});
+
+// test an external script
+applescript.execFile("applescript/externalscript.applescript", function(err, rtn) {
+  if (err) {
+  }
+  if (rtn) {
+      document.getElementById("nowPlayingArtist").innerHTML = "foo" ;
+  }
+});
+
+
+
+</script>
+
+
+
 
 
   </body>

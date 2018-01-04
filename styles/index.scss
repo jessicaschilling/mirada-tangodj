@@ -1,37 +1,6 @@
 @import "_themes.scss";
 @import "_fonts.scss";
 
-//Switcher test
-#switcher {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-#switcher li {
-  float: left;
-  width: 20px;
-  height: 20px;
-  margin: 0 5px 5px 0;
-  border-radius: 30px;
-}
-
-#darkButton {
-  background: gray;
-}
-#lightButton {
-  background: white;
-}
-#valentineButton {
-  background: blue;
-}
-#halloweenButton {
-  background: yellow;
-}
-#xmasButton {
-  background: green;
-}
-
 
 //Global styles
 body {
@@ -127,12 +96,12 @@ body.interstitial h2::before {
     }
 }
 
-h1, h2, h3, h4 {
+#nowPlayingGenre, #nowPlayingArtist, #nowPlayingTitle, #nextTandaArtist {
     margin: 0;
     line-height: 110%;
 }
 
-h1 {
+#nowPlayingGenre {
     font-size: 7.5vmax;
     font-weight: 800;
     text-transform: uppercase;
@@ -141,47 +110,47 @@ h1 {
 }
 
 
-h2 {
+#nowPlayingArtist {
     font-size: 5.6vmax;
     font-weight: 800;
     margin-bottom: 16px;
 }
 
-h3 {
+#nowPlayingTitle {
     font-size: 4vmax;
     font-weight: 400;
 }
 
-h4 {
+#nextTandaArtist {
     font-size: 3.5vmax;
     font-weight: 400;
 }
 
-h4::before {
+#nextTandaArtist::before {
     content: "Next Tanda: ";
     font-weight: 800;
 }
 
-h5, h6 {
+#songX, #songY {
     margin: 0;
     font-size: 16vh;
 }
 
-h5 {
+#songX {
     line-height: 70%;
 }
 
-h6 {
+#songY {
     line-height: 55%;
 }
 
-h5::before {
+#songX::before {
     content: "song\a";
     font-size: 3.8vmax;
     font-weight: 300;
 }
 
-h6::before {
+#songY::before {
     content: "of\a";
     font-size: 3.8vmax;
     font-weight:300;
