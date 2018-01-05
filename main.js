@@ -28,6 +28,7 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+  mainWindow.webContents.executeJavaScript('newSong()');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -149,5 +150,5 @@ app.on('ready', function () {
 
 //Listen for track changes
 systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-  console.log('song changed')
+  mainWindow.webContents.executeJavaScript('newSong()');
 })

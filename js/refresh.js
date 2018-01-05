@@ -1,13 +1,14 @@
-var applescript = require('applescript');
+const applescript = require('applescript');
 
-// Get the name
-getNowPlaying('Name');
+const newSong = function () {
+  console.log('newSong');
+  // Get the name, artist, genre of current song
+  getNowPlaying('Name');
+  getNowPlaying('Artist');
+  getNowPlaying('Genre');
+};
 
-// Get the artist
-getNowPlaying('Artist');
 
-// Get the genre
-getNowPlaying('Genre');
 
 function getNowPlaying(songAttribute) {
   let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
@@ -20,9 +21,3 @@ function getNowPlaying(songAttribute) {
     }
   });
 }
-//Listen for track changes
-const {systemPreferences} = require('electron');
-
-systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-  console.log('song changed')
-})
