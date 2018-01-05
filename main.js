@@ -11,8 +11,6 @@ const path = require('path')
 const url = require('url')
 // For reworking menus that differ from standard
 const Menu = electron.Menu;
-// For iTunes AppleScript support (thanks https://github.com/ryantenney/node-itunes )
-module.exports = require("./js/iTunes.js");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

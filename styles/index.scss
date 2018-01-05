@@ -96,7 +96,7 @@ body.interstitial h2::before {
     }
 }
 
-#nowPlayingGenre, #nowPlayingArtist, #nowPlayingTitle, #nextTandaArtist {
+#nowPlayingGenre, #nowPlayingArtist, #nowPlayingName, #nextTandaArtist {
     margin: 0;
     line-height: 110%;
 }
@@ -116,7 +116,7 @@ body.interstitial h2::before {
     margin-bottom: 16px;
 }
 
-#nowPlayingTitle {
+#nowPlayingName {
     font-size: 4vmax;
     font-weight: 400;
 }
