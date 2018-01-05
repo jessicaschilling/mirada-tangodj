@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="js/themeswitcher.js"></script>
     <script type="text/javascript" src="js/renderer.js"></script>
+    <script type="text/javascript" src="js/refresh.js"></script>
     <link rel="stylesheet" href="styles/index.scss">
     <title>Mirada</title>
   </head>
@@ -11,76 +12,20 @@
   <body id="background" class="themeDark">
 
   <div id="nowPlaying" class="themeDark">
-    <div id="nowPlayingGenre">Vals</div>
-    <div id="nowPlayingArtist">Francisco Canaro</div>
-    <div id="nowPlayingTitle">Salud, Dinero y Amor (1939 - Francisco Amor)</div>
+    <div id="nowPlayingGenre">null</div>
+    <div id="nowPlayingArtist">null</div>
+    <div id="nowPlayingName">null</div>
   </div>
 
   <div id="nextTanda" class="themeDark">
-    <div id="nextTandaArtist">Rodolfo Biagi <strong>Tango</strong></div>
+    <div id="nextTandaArtist">Orquesta <strong>Genre</strong></div>
 
   </div>
 
   <div id="ribbon" class="themeDark">
-    <div id="songX">1</div>
-    <div id="songY">3</div>
+    <div id="songX">X</div>
+    <div id="songY">Y</div>
   </div>
-
-
-
-<!-- Temporary holding pen for importing data from iTunes, this should go in an external file -->
-<!-- Plus need to determine whether to ditch iTunes.js -->
-<script>
-var applescript = require('applescript');
-
-// nowPlayingTitle
-var nowPlayingTitle = 'tell application "iTunes" to get name of current track';
-
-applescript.execString(nowPlayingTitle, function(err, rtn) {
-  if (err) {
-  }
-  if (rtn) {
-      document.getElementById("nowPlayingTitle").innerHTML = (rtn) ;
-  }
-});
-
-// nowPlayingGenre
-var nowPlayingGenre = 'tell application "iTunes" to get genre of current track';
-
-applescript.execString(nowPlayingGenre, function(err, rtn) {
-  if (err) {
-  }
-  if (rtn) {
-      document.getElementById("nowPlayingGenre").innerHTML = (rtn) ;
-  }
-});
-
-// nowPlayingArtist
-var nowPlayingArtist = 'tell application "iTunes" to get artist of current track';
-
-applescript.execString(nowPlayingArtist, function(err, rtn) {
-  if (err) {
-  }
-  if (rtn) {
-      document.getElementById("nowPlayingArtist").innerHTML = (rtn) ;
-  }
-});
-
-// test an external script
-applescript.execFile("applescript/externalscript.applescript", function(err, rtn) {
-  if (err) {
-  }
-  if (rtn) {
-      document.getElementById("nowPlayingArtist").innerHTML = "foo" ;
-  }
-});
-
-
-
-</script>
-
-
-
 
 
   </body>
