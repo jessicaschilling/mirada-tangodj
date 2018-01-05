@@ -10,7 +10,9 @@ const dialog = require('electron').dialog
 const path = require('path')
 const url = require('url')
 // For reworking menus that differ from standard
-const Menu = electron.Menu;
+const Menu = electron.Menu
+//For listening for track changes
+const {systemPreferences} = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -144,3 +146,8 @@ app.on('ready', function () {
   const menu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(menu);
 });
+
+//Listen for track changes
+systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+  console.log('song changed')
+})
