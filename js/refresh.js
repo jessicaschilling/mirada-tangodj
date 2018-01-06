@@ -13,11 +13,8 @@ function getNowPlaying(songAttribute) {
   let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
   let nowPlayingElementId = 'nowPlaying' + songAttribute;
   applescript.execString(nowPlayingString, function(err, rtn) {
-    if (err) {
-    }
-    if (rtn) {
-        document.getElementById(nowPlayingElementId).innerHTML = (rtn) ;
-    }
+    if (err) {return}
+    document.getElementById(nowPlayingElementId).innerHTML = (rtn) ;
   });
 }
 
@@ -26,12 +23,9 @@ function getNowPlaying(songAttribute) {
 // External script: Get array with next-tanda artist and genre
 function getNextTanda() {
 applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
-  if (err) {
-  }
-  if (Array.isArray(rtn) && rtn.length > 0) {
-    rtn.forEach(function(songName) {
-      console.log(songName);
-    });
-  }
+  if (err) {return}
+  rtn.forEach(function(songName) {
+    console.log(songName);
+  });
 });
 }
