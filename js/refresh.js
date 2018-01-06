@@ -23,7 +23,17 @@ function getNowPlaying(songAttribute) {
 function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
-    document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
-    document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+    if (rtn[ARTIST].length >0) {
+      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:</strong> " + rtn[ARTIST]);
+    }
+    else {
+      document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
+    }
+    if (rtn[GENRE].length >0 && !rtn[GENRE].match("Last Tanda") )  {
+      document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;|&nbsp;&nbsp;" + rtn[GENRE]);
+    }
+    else {
+      document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+    }
   });
 }
