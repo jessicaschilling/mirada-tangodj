@@ -10,11 +10,13 @@ const newSong = function () {
   getNowPlaying('Genre');
   getNextTanda();
   getSongCount();
+  isPlayerStoppedPaused();
 };
 
+// Do all the things at once
 newSong();
 
-// For grabbing the name, artist, genre of current song
+// Get the name, artist, genre of current song
 function getNowPlaying(songAttribute) {
   let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
   let nowPlayingElementId = 'nowPlaying' + songAttribute;
@@ -49,5 +51,18 @@ function getSongCount() {
     if (err) {return}
       document.getElementById("songX").innerHTML = rtn[SONGX];
       document.getElementById("songY").innerHTML = rtn[SONGY];
+  });
+}
+
+// Remove content and display background image if player state is stopped or paused
+function isPlayerStoppedPaused() {
+  applescript.execString('tell application "iTunes" to get player state', function(err, rtn) {
+    if (err) {return}
+    if (rtn !== "playing")  {
+      document.getElementById("overlay").className = "playerStoppedPaused"
+    }
+    else {
+      document.getElementById("overlay").classList.remove("playerStoppedPaused")
+    }
   });
 }
