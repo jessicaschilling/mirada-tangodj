@@ -1,5 +1,7 @@
 -- Determine the "x of y" count in the current tanda
 
+-- TODO: need to exit out if this song is a cortina
+
 tell application "iTunes"
 
 	set songCountX to (index of current track) as integer
@@ -21,6 +23,10 @@ tell application "iTunes"
 	end repeat
 
 	repeat
+		if name of track (songCountY) of current playlist contains "umparsita" then
+			set songYSub to (songYSub + 1)
+			exit repeat
+		end if
 		if genre of track (songCountY) of current playlist = "Cortina" then
 			exit repeat
 		else
