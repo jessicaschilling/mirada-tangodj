@@ -1,12 +1,15 @@
 const applescript = require('applescript');
 const ARTIST = 0;
 const GENRE = 1;
+const SONGX = 0;
+const SONGY = 1;
 
 const newSong = function () {
   getNowPlaying('Name');
   getNowPlaying('Artist');
   getNowPlaying('Genre');
   getNextTanda();
+  getSongCount();
 };
 
 newSong();
@@ -37,5 +40,14 @@ function getNextTanda() {
     else {
       document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
     }
+  });
+}
+
+// External script: Get array with X of Y count of current tanda
+function getSongCount() {
+  applescript.execFile("applescript/getSongCount.applescript", function(err, rtn) {
+    if (err) {return}
+      document.getElementById("songX").innerHTML = rtn[SONGX];
+      document.getElementById("songY").innerHTML = rtn[SONGY];
   });
 }
