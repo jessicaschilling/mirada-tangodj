@@ -15,7 +15,7 @@ function getNowPlaying(songAttribute) {
   let nowPlayingElementId = 'nowPlaying' + songAttribute;
   applescript.execString(nowPlayingString, function(err, rtn) {
     if (err) {return}
-    document.getElementById(nowPlayingElementId).innerHTML = (rtn) ;
+    document.getElementById(nowPlayingElementId).innerHTML = rtn ;
   });
 }
 
@@ -23,9 +23,7 @@ function getNowPlaying(songAttribute) {
 function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
-    // rtn[ARTIST] {
-    console.log(rtn[ARTIST]);
-    console.log(rtn[GENRE]);
-  // });
-});
+    document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
+    document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+  });
 }
