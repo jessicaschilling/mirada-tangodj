@@ -9,6 +9,8 @@ const newSong = function () {
   getNextTanda();
 };
 
+newSong();
+
 // For grabbing the name, artist, genre of current song
 function getNowPlaying(songAttribute) {
   let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
