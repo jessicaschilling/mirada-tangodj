@@ -3,6 +3,7 @@
 tell application "iTunes"
 
 	set findCortinaIndex to (index of current track) as integer
+	set totalTracks to (index of last track) of current playlist as integer
 
 	repeat
 		if genre of track (findCortinaIndex) of current playlist = "Cortina" then
@@ -19,6 +20,11 @@ tell application "iTunes"
 			-- Check if there's a Cumparsita in the next tanda
 			repeat
 				set findCortinaIndex to (findCortinaIndex + 1)
+				if findCortinaIndex = (totalTracks + 1) then
+					set nextTandaArtist to "Last Tanda"
+					set nextTandaGenre to ""
+					exit repeat
+				end if
 				if name of track (findCortinaIndex) of current playlist contains "umparsita" then
 					set nextTandaArtist to "Last Tanda"
 					set nextTandaGenre to ""
@@ -40,6 +46,11 @@ tell application "iTunes"
 			end if
 		end if
 		set findCortinaIndex to (findCortinaIndex + 1)
+		if findCortinaIndex = (totalTracks + 1) then
+			set nextTandaArtist to ""
+			set nextTandaGenre to "Last Tanda"
+			exit repeat
+		end if
 	end repeat
 
 	set nextTandaOutput to {nextTandaArtist, nextTandaGenre}
