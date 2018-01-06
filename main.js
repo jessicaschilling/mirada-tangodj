@@ -28,7 +28,7 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  mainWindow.webContents.executeJavaScript('newSong()');
+
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -41,6 +41,7 @@ function createWindow () {
     mainWindow = null
   })
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
