@@ -1,4 +1,6 @@
 const applescript = require('applescript');
+const ARTIST = 0;
+const GENRE = 1;
 
 const newSong = function () {
   getNowPlaying('Name');
@@ -6,7 +8,6 @@ const newSong = function () {
   getNowPlaying('Genre');
   getNextTanda();
 };
-
 
 // For grabbing the name, artist, genre of current song
 function getNowPlaying(songAttribute) {
@@ -18,14 +19,13 @@ function getNowPlaying(songAttribute) {
   });
 }
 
-
-
 // External script: Get array with next-tanda artist and genre
 function getNextTanda() {
-applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
-  if (err) {return}
-  rtn.forEach(function(songName) {
-    console.log(songName);
-  });
+  applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
+    if (err) {return}
+    // rtn[ARTIST] {
+    console.log(rtn[ARTIST]);
+    console.log(rtn[GENRE]);
+  // });
 });
 }
