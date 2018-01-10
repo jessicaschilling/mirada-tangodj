@@ -10,7 +10,9 @@ $config: (
     nextTandaBackground: #6C1515,
     nextTandaText: #FFFFFF,
     ribbonBackground: #C1C1C1,
-    ribbonText: #6C1515
+    ribbonText: #6C1515,
+    interstitialBackground: #6C1515,
+    interstitialText: #FFFFFF
   ),
 
   // Light
@@ -21,7 +23,9 @@ $config: (
     nextTandaBackground: #2C2C2C,
     nextTandaText: #FFFFFF,
     ribbonBackground: #990000,
-    ribbonText: #FFFFFF
+    ribbonText: #FFFFFF,
+    interstitialBackground: #2C2C2C,
+    interstitialText: #FFFFFF
   ),
 
   // Valentine
@@ -32,7 +36,9 @@ $config: (
     nextTandaBackground: #B51A3A,
     nextTandaText: #FFFFFF,
     ribbonBackground: #E48397,
-    ribbonText: #5E081E
+    ribbonText: #5E081E,
+    interstitialBackground: #B51A3A,
+    interstitialText: #FFFFFF
   ),
 
   // Halloween
@@ -43,7 +49,9 @@ $config: (
     nextTandaBackground: #FCCD67,
     nextTandaText: #000000,
     ribbonBackground: #FF7B00,
-    ribbonText: #000000
+    ribbonText: #000000,
+    interstitialBackground: #FCCD67,
+    interstitialText: #000000
   ),
 
   // Xmas
@@ -54,7 +62,9 @@ $config: (
     nextTandaBackground: #BE2227,
     nextTandaText: #FFFFFF,
     ribbonBackground: #DDB263,
-    ribbonText: #BE2227
+    ribbonText: #BE2227,
+    interstitialBackground: #BE2227,
+    interstitialText: #FFFFFF
   )
 
   )
@@ -106,6 +116,11 @@ $config: (
 
   #ribbon.#{$theme}:after {
     border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
+  }
+
+  #interstitial.#{$theme} {
+    background-color: map-fetch($config, themes $theme interstitialBackground);
+    color: map-fetch($config, themes $theme interstitialText);
   }
 
 }

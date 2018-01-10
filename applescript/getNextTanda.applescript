@@ -6,11 +6,11 @@ tell application "iTunes"
 	set totalTracks to (index of last track) of current playlist as integer
 
 	repeat
-		if genre of track (findCortinaIndex) of current playlist = "Cortina" then
+		if genre of track (findCortinaIndex) of current playlist contains "ortina" then
 			-- Check to see if there's more than one cortina after this one
 			repeat
 				set findCortinaIndex to (findCortinaIndex + 1)
-				if genre of track (findCortinaIndex) of current playlist ≠ "Cortina" then
+				if genre of track (findCortinaIndex) of current playlist does not contain "ortina" then
 					exit repeat
 				end if
 			end repeat
@@ -30,7 +30,7 @@ tell application "iTunes"
 					set nextTandaGenre to ""
 					exit repeat
 				else
-					if genre of track (findCortinaIndex) of current playlist = "Cortina" then
+					if genre of track (findCortinaIndex) of current playlist contains "ortina" then
 						exit repeat
 					end if
 				end if

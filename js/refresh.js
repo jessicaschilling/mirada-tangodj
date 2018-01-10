@@ -11,6 +11,7 @@ const newSong = function () {
   getNextTanda();
   getSongCount();
   isPlayerStoppedPaused();
+  isCortina();
 };
 
 // Do all the things at once
@@ -26,21 +27,39 @@ function getNowPlaying(songAttribute) {
   });
 }
 
-// External script: Get array with next-tanda artist and genre
+// External script: Get array with next-tanda artist and genre and write to both cortina and nextTanda divs
 function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
-    if (rtn[ARTIST].length >0) {
-      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:</strong> " + rtn[ARTIST]);
-    }
-    else {
-      document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
-    }
-    if (rtn[GENRE].length >0 && !rtn[GENRE].match("Last Tanda") )  {
-      document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;|&nbsp;&nbsp;" + rtn[GENRE]);
-    }
-    else {
-      document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+    if (rtn) {
+      // Write to the cortina div
+      document.getElementById("cortinaNextTandaArtist").innerHTML = rtn[ARTIST];
+      document.getElementById("cortinaNextTandaGenre").innerHTML = rtn[GENRE];
+
+      // Write to the nextTanda div, with text appends as needed
+      if (rtn[ARTIST].length >0) {
+        document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:</strong> " + rtn[ARTIST]);
+      }
+      else {
+        document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
+      }
+      if (rtn[GENRE].length >0 && !rtn[GENRE].match("Last Tanda") )  {
+        document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;|&nbsp;&nbsp;" + rtn[GENRE]);
+      }
+      else {
+        document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+      }
+
+      // // If a cortina, show cortina div and hide nowNext div
+      // if (rtn[GENRE] == "Cortina" )  {
+      //   document.getElementById("interstitial").style.display = "flex";
+      //   document.getElementById("nowNext").style.display = "none";
+      // }
+      // else {
+      //   document.getElementById("interstitial").style.display = "none";
+      //   document.getElementById("nowNext").style.display = "block";
+      // }
+
     }
   });
 }
@@ -54,15 +73,30 @@ function getSongCount() {
   });
 }
 
-// Remove content and display background image if player state is stopped or paused
+// Display image in overlay if player state is stopped or paused
 function isPlayerStoppedPaused() {
   applescript.execString('tell application "iTunes" to get player state', function(err, rtn) {
     if (err) {return}
     if (rtn !== "playing")  {
-      document.getElementById("overlay").className = "playerStoppedPaused"
+      document.getElementById("overlay").classList.add("playerStoppedPaused")
     }
     else {
       document.getElementById("overlay").classList.remove("playerStoppedPaused")
+    }
+  });
+}
+
+// Display full-screen next-tanda info in overlay if current song is a cortina
+function isCortina() {
+  applescript.execString('tell application "iTunes" to get genre of current track', function(err, rtn) {
+    if (err) {return}
+    if (rtn == "Cortina")  {
+      document.getElementById("interstitial").style.display = "flex";
+      document.getElementById("nowNext").style.display = "none";
+    }
+    else {
+      document.getElementById("interstitial").style.display = "none";
+      document.getElementById("nowNext").style.display = "block";
     }
   });
 }
