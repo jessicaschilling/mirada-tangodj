@@ -44,8 +44,13 @@ body {
    align-items: center;
    justify-content: center;
    flex-direction: column;
+   text-align: center;
    font-size: 7.5vmax;
    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+#nowNext {
+  display:none;
 }
 
 #nowPlaying, #nextTanda, #interstitial {
