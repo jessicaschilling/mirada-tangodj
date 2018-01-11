@@ -27,7 +27,7 @@ function createWindow () {
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
 
 
   // Open the DevTools.
@@ -91,7 +91,6 @@ app.on('ready', function () {
               checked: true,
               click: () => {
                 store.set('selectedTheme', 'themeDark');
-                console.log(store.get('selectedTheme'));
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -100,7 +99,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeLight');
-                console.log(store.get('selectedTheme'));
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -109,7 +107,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeValentine');
-                console.log(store.get('selectedTheme'));
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -118,7 +115,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeHalloween');
-                console.log(store.get('selectedTheme'));
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -127,7 +123,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeXmas');
-                console.log(store.get('selectedTheme'));
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             }
@@ -143,7 +138,14 @@ app.on('ready', function () {
       label: 'View',
       submenu: [
         {role: 'reload'},
-        {role: 'forcereload'},
+        {
+          label: 'Fake reload',
+          // accelerator: 'CmdOrCtrl+R',
+          click: () => {
+            mainWindow.webContents.reload();
+            mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
+          }
+        },
         {role: 'toggledevtools'},
         {type: 'separator'},
         {role: 'resetzoom'},
