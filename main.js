@@ -91,10 +91,6 @@ app.on('ready', function () {
               checked: true,
               click: () => {
                 store.set('selectedTheme', 'themeDark');
-<<<<<<< HEAD
-=======
-                console.log(store.get('selectedTheme'));
->>>>>>> bfd5e5a70b1c0dde81c97da98b8a924af5fb0283
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -103,10 +99,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeLight');
-<<<<<<< HEAD
-=======
-                console.log(store.get('selectedTheme'));
->>>>>>> bfd5e5a70b1c0dde81c97da98b8a924af5fb0283
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -115,10 +107,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeValentine');
-<<<<<<< HEAD
-=======
-                console.log(store.get('selectedTheme'));
->>>>>>> bfd5e5a70b1c0dde81c97da98b8a924af5fb0283
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -127,10 +115,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeHalloween');
-<<<<<<< HEAD
-=======
-                console.log(store.get('selectedTheme'));
->>>>>>> bfd5e5a70b1c0dde81c97da98b8a924af5fb0283
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
@@ -139,10 +123,6 @@ app.on('ready', function () {
               type: 'checkbox',
               click: () => {
                 store.set('selectedTheme', 'themeXmas');
-<<<<<<< HEAD
-=======
-                console.log(store.get('selectedTheme'));
->>>>>>> bfd5e5a70b1c0dde81c97da98b8a924af5fb0283
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             }
