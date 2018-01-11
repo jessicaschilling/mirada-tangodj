@@ -1,7 +1,5 @@
 -- Determine the "x of y" count in the current tanda
 
--- TODO: need to exit out if this song is a cortina
-
 tell application "iTunes"
 
 	set songCountX to (index of current track) as integer
