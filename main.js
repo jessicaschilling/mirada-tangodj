@@ -127,7 +127,36 @@ app.on('ready', function () {
               }
             }
           ]
+          },{
+            label: 'Image',
+            submenu: [
+              {
+                label: 'Default',
+                type: 'checkbox',
+                checked: true,
+                click: () => {
+                }
+              },
+              {
+                label: 'Custom',
+                type: 'checkbox',
+                click: () => {
+                }
+              },
+              {
+                label: 'Change custom ...',
+                type: 'checkbox',
+                click: () => {
+                }
+              }
+            ]
         }, {
+          label: 'Anonymize for alt',
+          type: 'checkbox',
+          checked: false,
+          click: () => {
+          }
+      }, {
           type: 'separator'
         }, {
           role: 'quit'
