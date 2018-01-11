@@ -23,7 +23,20 @@ function getNowPlaying(songAttribute) {
   let nowPlayingElementId = 'nowPlaying' + songAttribute;
   applescript.execString(nowPlayingString, function(err, rtn) {
     if (err) {return}
-    document.getElementById(nowPlayingElementId).innerHTML = rtn ;
+    if (songAttribute === "Name") {
+      //look backwards through rtn and add a <br> before the final ( if there is one
+      let finalOpenParenPosition = rtn.lastIndexOf('(');
+      if (finalOpenParenPosition > -1) {
+              let modifiedForParen = rtn.substring(0, finalOpenParenPosition) + '<br/> (' + rtn.substring(finalOpenParenPosition + 1);
+              document.getElementById(nowPlayingElementId).innerHTML = modifiedForParen ;
+      }
+      else {
+        document.getElementById(nowPlayingElementId).innerHTML = rtn ;
+      }
+    }
+    else {
+      document.getElementById(nowPlayingElementId).innerHTML = rtn ;
+    }
   });
 }
 
