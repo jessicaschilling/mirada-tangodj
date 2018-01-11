@@ -15,7 +15,7 @@
     "macos"
   ],
   "author": "Jessica Schilling",
-  "license": "CC0-1.0",
+  "license": "GNU GPLv3",
   "devDependencies": {
     "electron": "~1.7.8",
     "electron-prebuilt-compile": "^1.8.2-beta.3"
