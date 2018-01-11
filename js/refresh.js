@@ -49,17 +49,6 @@ function getNextTanda() {
       else {
         document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
       }
-
-      // // If a cortina, show cortina div and hide nowNext div
-      // if (rtn[GENRE] == "Cortina" )  {
-      //   document.getElementById("interstitial").style.display = "flex";
-      //   document.getElementById("nowNext").style.display = "none";
-      // }
-      // else {
-      //   document.getElementById("interstitial").style.display = "none";
-      //   document.getElementById("nowNext").style.display = "block";
-      // }
-
     }
   });
 }
@@ -78,10 +67,10 @@ function isPlayerStoppedPaused() {
   applescript.execString('tell application "iTunes" to get player state', function(err, rtn) {
     if (err) {return}
     if (rtn !== "playing")  {
-      document.getElementById("overlay").classList.add("playerStoppedPaused")
+      document.getElementById("playerStoppedPaused").style.display = "block";
     }
     else {
-      document.getElementById("overlay").classList.remove("playerStoppedPaused")
+      document.getElementById("playerStoppedPaused").style.display = "none";
     }
   });
 }
