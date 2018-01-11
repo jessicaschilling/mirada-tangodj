@@ -90,45 +90,45 @@ app.on('ready', function () {
               type: 'checkbox',
               checked: true,
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeDark");');
                 store.set('selectedTheme', 'themeDark');
                 console.log(store.get('selectedTheme'));
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Light',
               type: 'checkbox',
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeLight");');
                 store.set('selectedTheme', 'themeLight');
                 console.log(store.get('selectedTheme'));
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Valentine',
               type: 'checkbox',
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeValentine");');
                 store.set('selectedTheme', 'themeValentine');
                 console.log(store.get('selectedTheme'));
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Halloween',
               type: 'checkbox',
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeHalloween");');
                 store.set('selectedTheme', 'themeHalloween');
                 console.log(store.get('selectedTheme'));
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Christmas',
               type: 'checkbox',
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeXmas");');
                 store.set('selectedTheme', 'themeXmas');
                 console.log(store.get('selectedTheme'));
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             }
           ]
@@ -170,18 +170,10 @@ systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
   mainWindow.webContents.executeJavaScript('newSong()');
 })
 
-//Preferences storage
+//Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
 
-console.log(store.get('selectedTheme'));
-//=> 'themeXmas'
-
-// // Use dot-notation to access nested properties
-// store.set('foo.bar', true);
-// console.log(store.get('foo'));
-// //=> {bar: true}
-
-// store.delete('unicorn');
-// console.log(store.get('unicorn'));
-// //=> undefined
+app.on('ready', function () {
+  mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
+});
