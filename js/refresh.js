@@ -12,6 +12,7 @@ const newSong = function () {
   getNowPlaying('Genre');
   getNextTanda();
   isInterstitial();
+  afterCumparsita();
 };
 
 // Do all the things at once
@@ -117,4 +118,24 @@ function isInterstitial() {
     }
   });
 
+}
+
+// External AppleScript: Display thanks announcement if any of last 10 track names contains "umparsita"
+function afterCumparsita() {
+  applescript.execFile("applescript/afterCumparsita.applescript", function(err, rtn) {
+    if (err) {return}
+    if (rtn == "yes")  {
+      document.getElementById("interstitial").style.display = "flex";
+      document.getElementById("cortina").style.display = "none";
+      document.getElementById("announcement").style.display = "block";
+      document.getElementById("announcement").innerHTML = "Thank you for dancing!";
+      document.getElementById("nowNext").style.display = "none";
+    }
+    else {
+      document.getElementById("interstitial").style.display = "none";
+      document.getElementById("cortina").style.display = "none";
+      document.getElementById("announcement").style.display = "none";
+      document.getElementById("nowNext").style.display = "block";
+    }
+  });
 }
