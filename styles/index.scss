@@ -31,10 +31,9 @@ body {
     background: url(../img/backgroundDefault.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
 }
 
-#interstitial {
+#interstitial, #afterCumparsita {
    position: fixed;
    height: calc(100% - 6vh);
    width: calc(100% - 6vh);
@@ -46,14 +45,16 @@ body {
    flex-direction: column;
    text-align: center;
    font-size: 7.5vmax;
-   transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+#afterCumparsita {
 }
 
 #nowNext {
   display:none;
 }
 
-#nowPlaying, #nextTanda, #interstitial {
+#nowPlaying, #nextTanda, #interstitial, #afterCumparsita {
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
   -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);

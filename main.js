@@ -27,7 +27,7 @@ function createWindow () {
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
 
 
   // Open the DevTools.
@@ -87,36 +87,83 @@ app.on('ready', function () {
           submenu: [
             {
               label: 'Dark',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeDark"),
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeDark");');
+                store.set('selectedTheme', 'themeDark');
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
+                // menu.items[2].submenu.items[2].checked = true;
+                menuTemplate.menu.items[1].submenu.items[2].checked = true;
               }
             },
             {
               label: 'Light',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeLight"),
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeLight");');
+                store.set('selectedTheme', 'themeLight');
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Valentine',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeValentine"),
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeValentine");');
+                store.set('selectedTheme', 'themeValentine');
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Halloween',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeHalloween"),
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeHalloween");');
+                store.set('selectedTheme', 'themeHalloween');
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             },
             {
               label: 'Christmas',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeXmas"),
               click: () => {
-                mainWindow.webContents.executeJavaScript('switchTheme("themeXmas");');
+                store.set('selectedTheme', 'themeXmas');
+                mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
               }
             }
           ]
+          },{
+            label: 'Image',
+            submenu: [
+              {
+                label: 'Default',
+                type: 'radio',
+                click: () => {
+                }
+              },
+              {
+                label: 'Custom',
+                type: 'radio',
+                click: () => {
+                }
+              },
+              {
+                type: 'separator'
+              },
+              {
+                label: 'Change custom ...',
+                click: () => {
+                }
+              }
+            ]
         }, {
+          label: 'Anonymize for alt',
+          type: 'checkbox',
+          checked: false,
+          click: () => {
+          }
+      }, {
           type: 'separator'
         }, {
           role: 'quit'
@@ -127,7 +174,6 @@ app.on('ready', function () {
       label: 'View',
       submenu: [
         {role: 'reload'},
-        {role: 'forcereload'},
         {role: 'toggledevtools'},
         {type: 'separator'},
         {role: 'resetzoom'},
@@ -153,3 +199,7 @@ app.on('ready', function () {
 systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
   mainWindow.webContents.executeJavaScript('newSong()');
 })
+
+//Preferences storage and recall
+const Store = require('electron-store');
+const store = new Store();

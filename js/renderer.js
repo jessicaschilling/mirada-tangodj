@@ -3,4 +3,8 @@
 // All of the Node.js APIs are available in this process.
 
 // IPC renderer so the theme menus (and others) can talk to this render window
-const { ipcRenderer } = require('electron')
+const { ipcRenderer } = require('electron');
+
+// Preferences storage and recall
+const Store = require('electron-store');
+const store = new Store();

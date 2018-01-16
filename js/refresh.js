@@ -125,17 +125,10 @@ function afterCumparsita() {
   applescript.execFile("applescript/afterCumparsita.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn == "yes")  {
-      document.getElementById("interstitial").style.display = "flex";
-      document.getElementById("cortina").style.display = "none";
-      document.getElementById("announcement").style.display = "block";
-      document.getElementById("announcement").innerHTML = "Thank you for dancing!";
-      document.getElementById("nowNext").style.display = "none";
+      document.getElementById("afterCumparsita").style.display = "flex";
     }
     else {
-      document.getElementById("interstitial").style.display = "none";
-      document.getElementById("cortina").style.display = "none";
-      document.getElementById("announcement").style.display = "none";
-      document.getElementById("nowNext").style.display = "block";
+      document.getElementById("afterCumparsita").style.display = "none";
     }
   });
 }
