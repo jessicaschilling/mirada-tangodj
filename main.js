@@ -167,7 +167,7 @@ app.on('ready', function () {
             }
             else {
               store.set('anonymizeAlt', 'true');
-            };
+            }
           }
       }, {
           type: 'separator'

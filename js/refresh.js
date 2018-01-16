@@ -49,9 +49,21 @@ function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn) {
+      // Check if anonymizeAlt is true
+      if (store.get('anonymizeAlt') == "true") {
+        rtn[0] = "Alternative";
+      }
+
       // Write to the cortina div
+      // if (store.get('anonymizeAlt') == "false") {
+      //   document.getElementById("cortinaNextTandaArtist").innerHTML = rtn[ARTIST];
+      // }
+      // if (store.get('anonymizeAlt') == "true") {
+      //   document.getElementById("cortinaNextTandaArtist").innerHTML = "Alternative";
+      // }
       document.getElementById("cortinaNextTandaArtist").innerHTML = rtn[ARTIST];
       document.getElementById("cortinaNextTandaGenre").innerHTML = rtn[GENRE];
+      console.log(store.get('anonymizeAlt'));
 
       // Write to the nextTanda div, with text appends as needed
       if (rtn[ARTIST].length >0) {
