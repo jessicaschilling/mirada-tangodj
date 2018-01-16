@@ -167,14 +167,6 @@ app.on('ready', function () {
       label: 'View',
       submenu: [
         {role: 'reload'},
-        {
-          label: 'Fake reload',
-          // accelerator: 'CmdOrCtrl+R',
-          click: () => {
-            mainWindow.webContents.reload();
-            mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
-          }
-        },
         {role: 'toggledevtools'},
         {type: 'separator'},
         {role: 'resetzoom'},
@@ -204,7 +196,3 @@ systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
 //Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
-
-app.on('ready', function () {
-  mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
-});

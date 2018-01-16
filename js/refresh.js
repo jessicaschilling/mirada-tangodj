@@ -130,6 +130,5 @@ function afterCumparsita() {
     else {
       document.getElementById("afterCumparsita").style.display = "none";
     }
-    console.log(rtn);
   });
 }
