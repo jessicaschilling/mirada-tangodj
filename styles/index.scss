@@ -33,7 +33,7 @@ body {
     background-position: center;
 }
 
-#interstitial {
+#interstitial, #afterCumparsita {
    position: fixed;
    height: calc(100% - 6vh);
    width: calc(100% - 6vh);
@@ -47,11 +47,15 @@ body {
    font-size: 7.5vmax;
 }
 
+#afterCumparsita {
+  background-color: white;
+}
+
 #nowNext {
   display:none;
 }
 
-#nowPlaying, #nextTanda, #interstitial {
+#nowPlaying, #nextTanda, #interstitial, #afterCumparsita {
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
   -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
