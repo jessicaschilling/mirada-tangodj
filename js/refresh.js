@@ -49,7 +49,11 @@ function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn) {
-      // Write to the cortina div
+      // Check if anonymizeAlt is true and look at the grouping
+      if (store.get('anonymizeAlt') == "true" && rtn[2].match("#nu") ) {
+        rtn[0] = "Alternative";
+      }
+
       document.getElementById("cortinaNextTandaArtist").innerHTML = rtn[ARTIST];
       document.getElementById("cortinaNextTandaGenre").innerHTML = rtn[GENRE];
 
