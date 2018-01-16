@@ -154,6 +154,11 @@ app.on('ready', function () {
               {
                 label: 'Change custom ...',
                 click: () => {
+                    dialog.showOpenDialog({
+                      properties: ['openFile']
+                    }, selectedFile => store.set('customImage', selectedFile)
+                    )
+                    console.log(store.get('customImage'));
                 }
               }
             ]
