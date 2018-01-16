@@ -87,16 +87,19 @@ app.on('ready', function () {
           submenu: [
             {
               label: 'Dark',
-              type: 'checkbox',
-              checked: true,
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeDark"),
               click: () => {
                 store.set('selectedTheme', 'themeDark');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
+                // menu.items[2].submenu.items[2].checked = true;
+                menuTemplate.menu.items[1].submenu.items[2].checked = true;
               }
             },
             {
               label: 'Light',
-              type: 'checkbox',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeLight"),
               click: () => {
                 store.set('selectedTheme', 'themeLight');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
@@ -104,7 +107,8 @@ app.on('ready', function () {
             },
             {
               label: 'Valentine',
-              type: 'checkbox',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeValentine"),
               click: () => {
                 store.set('selectedTheme', 'themeValentine');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
@@ -112,7 +116,8 @@ app.on('ready', function () {
             },
             {
               label: 'Halloween',
-              type: 'checkbox',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeHalloween"),
               click: () => {
                 store.set('selectedTheme', 'themeHalloween');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
@@ -120,7 +125,8 @@ app.on('ready', function () {
             },
             {
               label: 'Christmas',
-              type: 'checkbox',
+              type: 'radio',
+              checked: (store.get('selectedTheme') == "themeXmas"),
               click: () => {
                 store.set('selectedTheme', 'themeXmas');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
@@ -132,20 +138,21 @@ app.on('ready', function () {
             submenu: [
               {
                 label: 'Default',
-                type: 'checkbox',
-                checked: true,
+                type: 'radio',
                 click: () => {
                 }
               },
               {
                 label: 'Custom',
-                type: 'checkbox',
+                type: 'radio',
                 click: () => {
                 }
               },
               {
+                type: 'separator'
+              },
+              {
                 label: 'Change custom ...',
-                type: 'checkbox',
                 click: () => {
                 }
               }
