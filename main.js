@@ -78,7 +78,7 @@ app.on('ready', function () {
         {
           label: 'About Mirada',
           click: () => {
-            dialog.showMessageBox({ message: "Mirada v. 2.0, made with love.",buttons: ["OK"] });
+            dialog.showMessageBox({ message: "Mirada v. 2.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling",buttons: ["OK"] });
           }
         }, {
           type: 'separator'
@@ -137,7 +137,7 @@ app.on('ready', function () {
             label: 'Image',
             submenu: [
               {
-                label: 'Default',
+                label: 'Bandone\xF3n',
                 type: 'radio',
                 click: () => {
                 }
@@ -158,10 +158,16 @@ app.on('ready', function () {
               }
             ]
         }, {
-          label: 'Anonymize for alt',
+          label: 'Anonymize Alt Tandas in Preview',
           type: 'checkbox',
-          checked: false,
+          checked: (store.get('anonymizeAlt') == "true"),
           click: () => {
+            if (store.get('anonymizeAlt') == "true") {
+              store.set('anonymizeAlt', 'false');
+            }
+            else {
+              store.set('anonymizeAlt', 'true');
+            };
           }
       }, {
           type: 'separator'
