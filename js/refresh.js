@@ -15,7 +15,6 @@ const trackChange = function () {
 };
 
 
-
 // Get the name, artist, genre of current song
 function getNowPlaying(songAttribute) {
   let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
