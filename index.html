@@ -12,7 +12,7 @@
 
   <div id="overlay">
     <div id="afterCumparsita">Thank you for dancing!</div>
-    <div id="playerStoppedPaused"><img src="file:////Users/jessicaschilling/Desktop/evil-eyes/lozenge.png"></div>
+    <div id="playerStoppedPaused"></div>
     <div id="interstitial">
       <div id="cortina">
         <div>Up next:</div>
@@ -47,6 +47,12 @@
 <!-- This digs out the prefs and applies them   -->
 <script>
 switchTheme(store.get('selectedTheme'));
+if (store.get('imageType') == "default") {
+  changeImage("img/bandoneon.jpg");
+}
+else {
+  changeImage(store.get('customImage'));
+}
 </script>
 
   </body>

@@ -14,4 +14,7 @@ function switchTheme(themeName) {
   ['background', 'nowPlaying', 'nextTanda', 'ribbon', 'interstitial', "afterCumparsita"].forEach(function( id ) {document.getElementById( id ).className = (themeName);});
 };
 
-// Switch out stopped/paused Image
+// Switch out stopped/paused image
+function changeImage(imageFilePath) {
+  document.getElementById("playerStoppedPaused").innerHTML = ("<img src=\"" + imageFilePath + "\">");
+};
