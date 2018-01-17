@@ -1,0 +1,150 @@
+// Color variable map to hold the themes
+$config: (
+  themes: (
+
+  // Dark (default)
+  themeDark: (
+    screenBackground: #727272,
+    nowPlayingBackground: #2C2C2C,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #6C1515,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #C1C1C1,
+    ribbonText: #6C1515,
+    interstitialBackground: #6C1515,
+    interstitialText: #FFFFFF,
+    afterCumparsitaBackground: #6C1515,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #2C2C2C
+  ),
+
+  // Light
+  themeLight: (
+    screenBackground: #727272,
+    nowPlayingBackground: #DDDDDD,
+    nowPlayingText: #222222,
+    nextTandaBackground: #2C2C2C,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #990000,
+    ribbonText: #FFFFFF,
+    interstitialBackground: #2C2C2C,
+    interstitialText: #FFFFFF,
+    afterCumparsitaBackground: #2C2C2C,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #2C2C2C
+  ),
+
+  // Valentine
+  themeValentine: (
+    screenBackground: #3c444e,
+    nowPlayingBackground: #5E081E,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #a91e3b,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #d9607c,
+    ribbonText: #470718,
+    interstitialBackground: #5E081E,
+    interstitialText: #FFFFFF,
+    afterCumparsitaBackground: #5E081E,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #5E081E
+  ),
+
+  // Halloween
+  themeHalloween: (
+    screenBackground: #4A4A4A,
+    nowPlayingBackground: #000000,
+    nowPlayingText: #FFFFFF,
+    nextTandaBackground: #FCCD67,
+    nextTandaText: #000000,
+    ribbonBackground: #d66700,
+    ribbonText: #000000,
+    interstitialBackground: #d66700,
+    interstitialText: #000000,
+    afterCumparsitaBackground: #d66700,
+    afterCumparsitaText: #000000,
+    playerStoppedPausedBackground: #000000
+  ),
+
+  // Xmas
+  themeXmas: (
+    screenBackground: #6d6358,
+    nowPlayingBackground: #243f15,
+    nowPlayingText: #f0ECE9,
+    nextTandaBackground: #92080c,
+    nextTandaText: #FFFFFF,
+    ribbonBackground: #DDB263,
+    ribbonText: #92080c,
+    interstitialBackground: #92080c,
+    interstitialText: #FFFFFF,
+    afterCumparsitaBackground: #92080c,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #243f15
+  )
+
+  )
+);
+
+// map-fetch($map, $keys)
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+  @if ($length > 1) {
+    $rest: ();
+    @for $i from 2 through $length {
+      $rest: append($rest, nth($keys, $i))
+    }
+    @return map-fetch($value, $rest)
+  } @else {
+    @return $value;
+  }
+}
+
+
+
+// Loop for each individual theme
+@each $theme in map-keys(map-get($config, themes)) {
+
+  #background.#{$theme} {
+    background-color: map-fetch($config, themes $theme screenBackground);
+  }
+
+  #nowPlaying.#{$theme} {
+    background-color: map-fetch($config, themes $theme nowPlayingBackground);
+    color: map-fetch($config, themes $theme nowPlayingText);
+  }
+
+  #nextTanda.#{$theme} {
+    background-color: map-fetch($config, themes $theme nextTandaBackground);
+    color: map-fetch($config, themes $theme nextTandaText);
+  }
+
+  #ribbon.#{$theme} {
+    background-color: map-fetch($config, themes $theme ribbonBackground);
+    color: map-fetch($config, themes $theme ribbonText);
+  }
+
+  #ribbon.#{$theme}:before {
+    border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
+  }
+
+  #ribbon.#{$theme}:after {
+    border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
+  }
+
+  #interstitial.#{$theme} {
+    background-color: map-fetch($config, themes $theme interstitialBackground);
+    color: map-fetch($config, themes $theme interstitialText);
+  }
+
+  #afterCumparsita.#{$theme} {
+    background-color: map-fetch($config, themes $theme afterCumparsitaBackground);
+    color: map-fetch($config, themes $theme afterCumparsitaText);
+  }
+
+  #playerStoppedPaused.#{$theme} {
+    background-color: map-fetch($config, themes $theme playerStoppedPausedBackground);
+  }
+
+}
