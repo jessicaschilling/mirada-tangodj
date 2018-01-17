@@ -4,7 +4,7 @@
 
 //Global styles
 body {
-    font-family:"Quicksand",arial,helvetica,sans-serif;
+    font-family:"Proza Libre", "ProzaLibre", arial,helvetica,sans-serif;
     margin: 3vh;
     padding: 0;
     height: 94vh;
@@ -26,8 +26,6 @@ body {
     height: 100%;
     width: 100%;
     display: none;
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 1); /* Black w/opacity */
 }
 
 #playerStoppedPaused img {
@@ -48,9 +46,26 @@ body {
    flex-direction: column;
    text-align: center;
    font-size: 7.5vmax;
+   font-weight: 800;
+}
+
+#cortinaNextTandaGenre {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+#upNext {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 75%;
+  margin-bottom: 0.4em;
 }
 
 #afterCumparsita {
+}
+
+#announcementText {
+  font-weight: 400;
 }
 
 #nowNext {
@@ -74,9 +89,10 @@ body {
     height: 12vh;
     margin: 0;
     padding: 2vh;
-    text-align: center;
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: row;
 }
 
 #ribbon {
@@ -115,22 +131,21 @@ body {
 
 #nowPlayingGenre, #nowPlayingArtist, #nowPlayingName, #nextTandaArtist, #nextTandaGenre {
     margin: 0;
-    line-height: 110%;
+    line-height: 135%;
 }
 
 #nowPlayingGenre {
     font-size: 7.5vmax;
-    font-weight: 800;
+    font-weight: 400;
     text-transform: uppercase;
     line-height: 90%;
-    margin-bottom: 16px;
+    margin-bottom: 0.2em;
 }
-
 
 #nowPlayingArtist {
     font-size: 5.6vmax;
     font-weight: 800;
-    margin-bottom: 16px;
+    margin-bottom: 0.3em;
 }
 
 #nowPlayingName {
@@ -145,7 +160,7 @@ body {
 
 #nextTandaGenre {
     font-size: 3.5vmax;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 #songX, #songY {
@@ -158,18 +173,18 @@ body {
 }
 
 #songY {
-    line-height: 55%;
+    line-height: 70%;
 }
 
 #songX::before {
     content: "song\a";
     font-size: 3.8vmax;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 #songY::before {
     content: "of\a";
     font-size: 3.8vmax;
-    font-weight:300;
+    font-weight:400;
     line-height:200%;
 }

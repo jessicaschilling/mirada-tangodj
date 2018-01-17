@@ -14,14 +14,15 @@ $config: (
     interstitialBackground: #6C1515,
     interstitialText: #FFFFFF,
     afterCumparsitaBackground: #6C1515,
-    afterCumparsitaText: #FFFFFF
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #2C2C2C
   ),
 
   // Light
   themeLight: (
-    screenBackground: #FFFFFF,
-    nowPlayingBackground: #EFEFEF,
-    nowPlayingText: #990000,
+    screenBackground: #727272,
+    nowPlayingBackground: #DDDDDD,
+    nowPlayingText: #222222,
     nextTandaBackground: #2C2C2C,
     nextTandaText: #FFFFFF,
     ribbonBackground: #990000,
@@ -29,22 +30,24 @@ $config: (
     interstitialBackground: #2C2C2C,
     interstitialText: #FFFFFF,
     afterCumparsitaBackground: #2C2C2C,
-    afterCumparsitaText: #FFFFFF
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #2C2C2C
   ),
 
   // Valentine
   themeValentine: (
-    screenBackground: #E4CDD3,
+    screenBackground: #3c444e,
     nowPlayingBackground: #5E081E,
     nowPlayingText: #FFFFFF,
-    nextTandaBackground: #B51A3A,
+    nextTandaBackground: #a91e3b,
     nextTandaText: #FFFFFF,
-    ribbonBackground: #E48397,
-    ribbonText: #5E081E,
-    interstitialBackground: #B51A3A,
+    ribbonBackground: #d9607c,
+    ribbonText: #470718,
+    interstitialBackground: #5E081E,
     interstitialText: #FFFFFF,
-    afterCumparsitaBackground: #B51A3A,
-    afterCumparsitaText: #FFFFFF
+    afterCumparsitaBackground: #5E081E,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #5E081E
   ),
 
   // Halloween
@@ -54,27 +57,29 @@ $config: (
     nowPlayingText: #FFFFFF,
     nextTandaBackground: #FCCD67,
     nextTandaText: #000000,
-    ribbonBackground: #FF7B00,
+    ribbonBackground: #d66700,
     ribbonText: #000000,
-    interstitialBackground: #FCCD67,
+    interstitialBackground: #d66700,
     interstitialText: #000000,
-    afterCumparsitaBackground: #FCCD67,
-    afterCumparsitaText: #000000
+    afterCumparsitaBackground: #d66700,
+    afterCumparsitaText: #000000,
+    playerStoppedPausedBackground: #000000
   ),
 
   // Xmas
   themeXmas: (
-    screenBackground: #D4BEA6,
-    nowPlayingBackground: #2B5116,
+    screenBackground: #6d6358,
+    nowPlayingBackground: #243f15,
     nowPlayingText: #f0ECE9,
-    nextTandaBackground: #BE2227,
+    nextTandaBackground: #92080c,
     nextTandaText: #FFFFFF,
     ribbonBackground: #DDB263,
-    ribbonText: #BE2227,
-    interstitialBackground: #BE2227,
+    ribbonText: #92080c,
+    interstitialBackground: #92080c,
     interstitialText: #FFFFFF,
-    afterCumparsitaBackground: #BE2227,
-    afterCumparsitaText: #FFFFFF
+    afterCumparsitaBackground: #92080c,
+    afterCumparsitaText: #FFFFFF,
+    playerStoppedPausedBackground: #243f15
   )
 
   )
@@ -136,6 +141,10 @@ $config: (
   #afterCumparsita.#{$theme} {
     background-color: map-fetch($config, themes $theme afterCumparsitaBackground);
     color: map-fetch($config, themes $theme afterCumparsitaText);
+  }
+
+  #playerStoppedPaused.#{$theme} {
+    background-color: map-fetch($config, themes $theme playerStoppedPausedBackground);
   }
 
 }

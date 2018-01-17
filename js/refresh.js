@@ -56,13 +56,13 @@ function getNextTanda() {
 
       // Write to the nextTanda div, with text appends as needed
       if (rtn[ARTIST].length >0) {
-        document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:</strong> " + rtn[ARTIST]);
+        document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;</strong> " + rtn[ARTIST]);
       }
       else {
         document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
       }
       if (rtn[GENRE].length >0 && !rtn[GENRE].match("Last Tanda") )  {
-        document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;|&nbsp;&nbsp;" + rtn[GENRE]);
+        document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;" + rtn[GENRE]);
       }
       else {
         document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
