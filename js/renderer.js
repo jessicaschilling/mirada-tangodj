@@ -8,3 +8,10 @@ const { ipcRenderer } = require('electron');
 // Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
+
+//Switch themes by renaming classes in the DOM
+function switchTheme(themeName) {
+  ['background', 'nowPlaying', 'nextTanda', 'ribbon', 'interstitial', "afterCumparsita"].forEach(function( id ) {document.getElementById( id ).className = (themeName);});
+};
+
+// Switch out stopped/paused Image
