@@ -78,7 +78,7 @@ app.on('ready', function () {
         {
           label: 'About Mirada',
           click: () => {
-            dialog.showMessageBox({ message: "Mirada v. 2.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling",buttons: ["OK"] });
+            dialog.showMessageBox({ message: "Mirada v. 3.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling",buttons: ["OK"] });
           }
         }, {
           type: 'separator'
