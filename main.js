@@ -83,7 +83,7 @@ app.on('ready', function () {
         }, {
           type: 'separator'
         },{
-          label: 'Themes',
+          label: 'Theme',
           submenu: [
             {
               label: 'Dark',
@@ -134,30 +134,52 @@ app.on('ready', function () {
             }
           ]
           },{
-            label: 'Image',
+            label: 'Paused/Stopped Image',
             submenu: [
               {
                 label: 'Bandone\xF3n',
                 type: 'radio',
+                checked: (store.get('imageType') == "default"),
                 click: () => {
+                  mainWindow.webContents.executeJavaScript('changeImage("img/bandoneon.jpg");');
+                  store.set('imageType', 'default');
                 }
               },
               {
                 label: 'Custom',
                 type: 'radio',
+                checked: (store.get('imageType') == "custom"),
                 click: () => {
+                  mainWindow.webContents.executeJavaScript('changeImage("' + (store.get('customImage')) + '");');
+                  store.set('imageType', 'custom');
                 }
               },
               {
                 type: 'separator'
               },
               {
-                label: 'Change custom ...',
+                label: 'Change Custom Image...',
                 click: () => {
+                  dialog.showOpenDialog({ filters: [
+                    { name: 'Images', extensions: ['jpg', 'png', 'gif', 'svg'] }
+                  ]},
+                  function (selectedFile) {
+                    if (selectedFile === undefined) return;
+                    else store.set('customImage', selectedFile);
+                    mainWindow.webContents.executeJavaScript('changeImage("' + (store.get('customImage')) + '");');
+                    store.set('imageType', 'custom');
+                    // Rebuild all the menus, this might be the wrong way to do this
+                    const menu = Menu.buildFromTemplate(menuTemplate);
+                    Menu.setApplicationMenu(menu);
+                 });
                 }
               }
             ]
-        }, {
+        },
+        {
+          type: 'separator'
+        },
+        {
           label: 'Anonymize Alt Tandas in Preview',
           type: 'checkbox',
           checked: (store.get('anonymizeAlt') == "true"),

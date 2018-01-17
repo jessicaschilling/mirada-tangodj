@@ -28,9 +28,12 @@ body {
     display: none;
     background-color: rgb(0,0,0); /* Black fallback color */
     background-color: rgba(0,0,0, 1); /* Black w/opacity */
-    background: url(../img/backgroundDefault.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
+}
+
+#playerStoppedPaused img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
 }
 
 #interstitial, #afterCumparsita {
