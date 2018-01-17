@@ -12,10 +12,6 @@ const trackChange = function () {
   getNextTanda();
   isInterstitial();
   afterCumparsita();
-
-  // $( "#nowNext" ).fadeOut( 300 );
-  // $( "#nowNext" ).fadeIn( 1000 );
-
 };
 
 
