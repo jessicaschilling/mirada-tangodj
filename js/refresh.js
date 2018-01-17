@@ -1,10 +1,9 @@
-const applescript = require('applescript');
 const ARTIST = 0;
 const GENRE = 1;
 const SONGX = 0;
 const SONGY = 1;
 
-const newSong = function () {
+const trackChange = function () {
   getSongCount();
   isPlayerStoppedPaused();
   getNowPlaying('Name');
@@ -15,8 +14,6 @@ const newSong = function () {
   afterCumparsita();
 };
 
-// Do all the things at once
-newSong();
 
 // Get the name, artist, genre of current song
 function getNowPlaying(songAttribute) {
@@ -44,7 +41,7 @@ function getNowPlaying(songAttribute) {
   });
 }
 
-// External script: Get array with next-tanda artist and genre and write to both cortina and nextTanda divs
+// External script: Get array with next-tanda artist and genre, and write to both cortina and nextTanda divs
 function getNextTanda() {
   applescript.execFile("applescript/getNextTanda.applescript", function(err, rtn) {
     if (err) {return}

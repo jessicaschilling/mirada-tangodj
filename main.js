@@ -83,6 +83,22 @@ app.on('ready', function () {
         }, {
           type: 'separator'
         },{
+          label: 'Player Source',
+              submenu: [
+                {
+                  label: 'Embrace',
+                  type: 'radio',
+                  enabled: false
+                },
+                {
+                  label: 'iTunes',
+                  type: 'radio',
+                  checked: true
+                }
+              ]
+          }, {
+            type: 'separator'
+          },{
           label: 'Theme',
           submenu: [
             {
@@ -225,7 +241,7 @@ app.on('ready', function () {
 
 //Listen for track changes
 systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-  mainWindow.webContents.executeJavaScript('newSong()');
+  mainWindow.webContents.executeJavaScript('trackChange()');
 })
 
 //Preferences storage and recall

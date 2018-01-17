@@ -44,7 +44,7 @@
 
   </div>
 
-<!-- This digs out the prefs and applies them   -->
+<!-- This digs out the prefs and applies them on each reload, plus does the main trackChange script  -->
 <script>
 switchTheme(store.get('selectedTheme'));
 if (store.get('imageType') == "default") {
@@ -53,6 +53,8 @@ if (store.get('imageType') == "default") {
 else {
   changeImage(store.get('customImage'));
 }
+
+trackChange();
 </script>
 
   </body>
