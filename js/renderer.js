@@ -5,6 +5,9 @@
 // IPC renderer so the theme menus (and others) can talk to this render window
 const { ipcRenderer } = require('electron');
 
+// For AppleScript
+const applescript = require('applescript');
+
 // Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
