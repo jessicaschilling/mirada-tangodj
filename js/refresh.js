@@ -13,8 +13,8 @@ const trackChange = function () {
   isInterstitial();
   afterCumparsita();
 
-  $( "#nowNext" ).fadeOut( 300 );
-  $( "#nowNext" ).fadeIn( 1000 );
+  // $( "#nowNext" ).fadeOut( 300 );
+  // $( "#nowNext" ).fadeIn( 1000 );
 
 };
 
@@ -91,10 +91,11 @@ function isPlayerStoppedPaused() {
   applescript.execString('tell application "iTunes" to get player state', function(err, rtn) {
     if (err) {return}
     if (rtn !== "playing")  {
-      document.getElementById("playerStoppedPaused").style.display = "block";
+      $( "#playerStoppedPaused" ).fadeIn( 300 );
+      $( "#playerStoppedPaused" ).css( 'display', 'block' );
     }
     else {
-      document.getElementById("playerStoppedPaused").style.display = "none";
+      $( "#playerStoppedPaused" ).fadeOut( 300 );
     }
   });
 }
@@ -104,19 +105,21 @@ function isInterstitial() {
   applescript.execFile("applescript/detectInterstitial.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn[0].match("ortina"))  {
-      document.getElementById("interstitial").style.display = "flex";
+      $( "#interstitial" ).fadeIn( 300 );
+      $( "#interstitial" ).css( 'display', 'flex' );
       document.getElementById("cortina").style.display = "block";
       document.getElementById("announcement").style.display = "none";
       document.getElementById("nowNext").style.display = "none";
     }
     if (rtn[1].match("nnounc"))  {
-      document.getElementById("interstitial").style.display = "flex";
+      $( "#interstitial" ).fadeIn( 300 );
+      $( "#interstitial" ).css( 'display', 'flex' );
       document.getElementById("cortina").style.display = "none";
       document.getElementById("announcement").style.display = "block";
       document.getElementById("nowNext").style.display = "none";
     }
     if (!rtn[1].match("nnounc") && !rtn[0].match("ortina")) {
-      document.getElementById("interstitial").style.display = "none";
+      $( "#interstitial" ).fadeOut( 300 );
       document.getElementById("cortina").style.display = "none";
       document.getElementById("announcement").style.display = "none";
       document.getElementById("nowNext").style.display = "block";
@@ -130,10 +133,13 @@ function afterCumparsita() {
   applescript.execFile("applescript/afterCumparsita.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn == "yes")  {
-      document.getElementById("afterCumparsita").style.display = "flex";
+      // document.getElementById("afterCumparsita").style.display = "flex";
+      $( "#afterCumparsita" ).fadeIn( 300 );
+      $( "#afterCumparsita" ).css( 'display', 'flex' );
     }
     else {
-      document.getElementById("afterCumparsita").style.display = "none";
+      // document.getElementById("afterCumparsita").style.display = "none";
+      $( "#afterCumparsita" ).fadeOut( 300 );
     }
   });
 }

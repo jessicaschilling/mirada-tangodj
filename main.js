@@ -108,8 +108,6 @@ app.on('ready', function () {
               click: () => {
                 store.set('selectedTheme', 'themeDark');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
-                // menu.items[2].submenu.items[2].checked = true;
-                menuTemplate.menu.items[1].submenu.items[2].checked = true;
               }
             },
             {
