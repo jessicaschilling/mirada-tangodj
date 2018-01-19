@@ -18,7 +18,7 @@ const store = new Store();
 //Switch themes by renaming classes in the DOM
 function switchTheme(themeName) {
   ['background', 'nowPlaying', 'nextTanda', 'ribbon', 'interstitial', "afterCumparsita", "playerStoppedPaused"].forEach(function( id ) {document.getElementById( id ).className = (themeName);});
-};
+   };
 
 // Switch out stopped/paused image
 function changeImage(imageFilePath) {

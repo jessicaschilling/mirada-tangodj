@@ -88,12 +88,28 @@ app.on('ready', function () {
                 {
                   label: 'Embrace',
                   type: 'radio',
-                  enabled: false
+                  checked: (store.get('player') == "applescript/Embrace/"),
+                  click: () => {
+                    store.set('player', 'applescript/Embrace/');
+                    mainWindow.loadURL(url.format({
+                      pathname: path.join(__dirname, 'index.html'),
+                      protocol: 'file:',
+                      slashes: true
+                    }));
+                  }
                 },
                 {
                   label: 'iTunes',
                   type: 'radio',
-                  checked: true
+                  checked: (store.get('player') == "applescript/iTunes/"),
+                  click: () => {
+                    store.set('player', 'applescript/iTunes/');
+                    mainWindow.loadURL(url.format({
+                      pathname: path.join(__dirname, 'index.html'),
+                      protocol: 'file:',
+                      slashes: true
+                    }));
+                  }
                 }
               ]
           }, {
