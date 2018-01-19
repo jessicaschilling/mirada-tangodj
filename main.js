@@ -247,3 +247,5 @@ systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
 //Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
+
+store.set('player', 'applescript/Embrace/');
