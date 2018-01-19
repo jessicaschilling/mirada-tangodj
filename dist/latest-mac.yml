@@ -1,0 +1,10 @@
+version: 3.0.0
+files:
+  - url: Mirada-3.0.0-mac.zip
+    sha512: ylM82MPtrqKa/q0yDQQEy3N4M3czhJLXRpTIrYYXUerliSAnzwGEQpefLwJaq36fVmlQu4fKFSZSiLskqUEQrw==
+  - url: Mirada-3.0.0.dmg
+    sha512: LBlsaIIzoY8fJrXabCJCK+U41JGaKMH28VdDwc1QhuCvQUnO8HUEkApsUDHoAL4GNaOT2v+ZA5Qn6Lewj8vsMA==
+    size: 47991627
+path: Mirada-3.0.0-mac.zip
+sha512: ylM82MPtrqKa/q0yDQQEy3N4M3czhJLXRpTIrYYXUerliSAnzwGEQpefLwJaq36fVmlQu4fKFSZSiLskqUEQrw==
+releaseDate: '2018-01-19T18:45:45.655Z'
