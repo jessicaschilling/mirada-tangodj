@@ -21,7 +21,7 @@ tell application "Embrace"
 	set songYSub to "0" as integer
 
 	repeat
-		if genre of track (songCountX) = "Cortina" then
+		if genre of track (songCountX) contains "ortina" then
 			exit repeat
 		else
 			set songCountX to (songCountX + -1)
