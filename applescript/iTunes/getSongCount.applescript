@@ -9,7 +9,7 @@ tell application "iTunes"
 	set songYSub to "0" as integer
 
 	repeat
-		if genre of track (songCountX) of current playlist = "Cortina" then
+		if genre of track (songCountX) of current playlist contains "ortina" then
 			exit repeat
 		else
 			set songCountX to (songCountX + -1)
@@ -25,7 +25,7 @@ tell application "iTunes"
 			set songYSub to (songYSub + 1)
 			exit repeat
 		end if
-		if genre of track (songCountY) of current playlist = "Cortina" then
+		if genre of track (songCountY) of current playlist contains "ortina" then
 			exit repeat
 		else
 			set songCountY to (songCountY + 1)
