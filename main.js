@@ -88,12 +88,28 @@ app.on('ready', function () {
                 {
                   label: 'Embrace',
                   type: 'radio',
-                  enabled: false
+                  checked: (store.get('player') == "applescript/Embrace/"),
+                  click: () => {
+                    store.set('player', 'applescript/Embrace/');
+                    mainWindow.loadURL(url.format({
+                      pathname: path.join(__dirname, 'index.html'),
+                      protocol: 'file:',
+                      slashes: true
+                    }));
+                  }
                 },
                 {
                   label: 'iTunes',
                   type: 'radio',
-                  checked: true
+                  checked: (store.get('player') == "applescript/iTunes/"),
+                  click: () => {
+                    store.set('player', 'applescript/iTunes/');
+                    mainWindow.loadURL(url.format({
+                      pathname: path.join(__dirname, 'index.html'),
+                      protocol: 'file:',
+                      slashes: true
+                    }));
+                  }
                 }
               ]
           }, {
@@ -108,8 +124,6 @@ app.on('ready', function () {
               click: () => {
                 store.set('selectedTheme', 'themeDark');
                 mainWindow.webContents.executeJavaScript('switchTheme("' + (store.get('selectedTheme')) + '");');
-                // menu.items[2].submenu.items[2].checked = true;
-                menuTemplate.menu.items[1].submenu.items[2].checked = true;
               }
             },
             {
@@ -247,5 +261,3 @@ systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
 //Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
-
-store.set('player', 'applescript/Embrace/');
