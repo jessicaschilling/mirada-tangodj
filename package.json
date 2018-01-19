@@ -5,8 +5,39 @@
   "description": "A tango-specific visualizer for iTunes or Embrace on macOS",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "install-app-deps",
+    "start": "npm install && electron ./app",
+    "pack": "build --dir",
+    "dist": "build"
   },
+  "build": {
+    "appId": "yourappid",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
+},
   "repository": "https://github.com/jessicaschilling/mirada-standalone",
   "keywords": [
     "mirada",
@@ -20,6 +51,7 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "electron": "~1.7.8",
+    "electron-builder": "^19.54.0",
     "electron-packager": "^10.1.1",
     "electron-prebuilt-compile": "^1.8.2-beta.3"
   },
