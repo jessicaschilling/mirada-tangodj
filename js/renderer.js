@@ -8,6 +8,9 @@ const { ipcRenderer } = require('electron');
 // For AppleScript
 const applescript = require('applescript');
 
+// jQuery for fade transitions
+const $ = require('jQuery');
+
 // Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
