@@ -6,40 +6,36 @@ const SONGY = 1;
 const trackChange = function () {
   getSongCount();
   isPlayerStoppedPaused();
-  getNowPlaying('Name');
-  getNowPlaying('Artist');
-  getNowPlaying('Genre');
   getNextTanda();
   isInterstitial();
   afterCumparsita();
+  getNowPlayingNew();
 };
 
-
-// Get the name, artist, genre of current song
-function getNowPlaying(songAttribute) {
-  let nowPlayingString = 'tell application "iTunes" to get ' + songAttribute + ' of current track';
-  let nowPlayingElementId = 'nowPlaying' + songAttribute;
-  applescript.execString(nowPlayingString, function(err, rtn) {
+// External script: get the name, artist, genre of current song
+function getNowPlayingNew() {
+  applescript.execFile("applescript/nowPlayingInfo.applescript", function(err, rtn) {
     if (err) {return}
-    if (songAttribute === "Name") {
-      // Write to the announcement div in case it's an announcement
-      document.getElementById("announcementText").innerHTML = rtn ;
+    if (rtn) {
+      document.getElementById("nowPlayingArtist").innerHTML = rtn[1] ;
+      document.getElementById("nowPlayingGenre").innerHTML = rtn[2] ;
+
+      // Write the title to the announcement div in case it's an announcement
+      document.getElementById("announcementText").innerHTML = rtn[0] ;
 
       // Look backwards through rtn and add a <br> before the final ( if there is one
-      let finalOpenParenPosition = rtn.lastIndexOf('(');
+      let finalOpenParenPosition = rtn[0].lastIndexOf('(');
       if (finalOpenParenPosition > -1) {
-              let modifiedForParen = rtn.substring(0, finalOpenParenPosition) + '<br/> (' + rtn.substring(finalOpenParenPosition + 1);
-              document.getElementById(nowPlayingElementId).innerHTML = modifiedForParen ;
+              let modifiedForParen = rtn[0].substring(0, finalOpenParenPosition) + '<br/> (' + rtn[0].substring(finalOpenParenPosition + 1);
+              document.getElementById("nowPlayingName").innerHTML = modifiedForParen ;
       }
       else {
-        document.getElementById(nowPlayingElementId).innerHTML = rtn ;
+        document.getElementById("nowPlayingName").innerHTML = rtn[0] ;
       }
-    }
-    else {
-      document.getElementById(nowPlayingElementId).innerHTML = rtn ;
     }
   });
 }
+
 
 // External script: Get array with next-tanda artist and genre, and write to both cortina and nextTanda divs
 function getNextTanda() {
@@ -82,9 +78,9 @@ function getSongCount() {
   });
 }
 
-// Display image in overlay if player state is stopped or paused
+// External script: display image in overlay if player state is stopped or paused
 function isPlayerStoppedPaused() {
-  applescript.execString('tell application "iTunes" to get player state', function(err, rtn) {
+  applescript.execFile("applescript/isPlayerStoppedPaused.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn !== "playing")  {
       document.getElementById("playerStoppedPaused").style.display = "block";
