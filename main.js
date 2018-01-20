@@ -258,13 +258,13 @@ app.on('ready', function () {
   Menu.setApplicationMenu(menu);
 });
 
-//Listen for track changes
-// if (store.get('player') == "applescript/Embrace/") {
-//   systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
-//     // systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-//     mainWindow.webContents.executeJavaScript('trackChange()');
-//   })
-// }
+// //Listen for track changes
+// (store.get('player')) function(err, rtn) {
+//   if (err) {return}
+//   if (rtn) {
+//     console.log(store.get('player'));
+//   }
+
 systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
   // systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
   mainWindow.webContents.executeJavaScript('trackChange()');
@@ -273,3 +273,15 @@ systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => 
 //Preferences storage and recall
 const Store = require('electron-store');
 const store = new Store();
+if (store.has('player') === false) {
+  store.set('player', 'applescript/Embrace/');
+};
+if (store.has('selectedTheme') === false) {
+  store.set('selectedTheme', 'themeDark');
+};
+if (store.has('imageType') === false) {
+  store.set('imageType', 'default');
+};
+if (store.has('anonymizeAlt') === false) {
+  store.set('anonymizeAlt', 'false');
+};
