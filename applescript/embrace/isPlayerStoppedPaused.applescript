@@ -2,8 +2,6 @@
 
 tell application "Embrace"
 
-	set state to "playing"
-
-	get state
+	get player state
 
 end tell

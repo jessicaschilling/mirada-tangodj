@@ -2,6 +2,6 @@
 
 tell application "iTunes"
 
-	tell application "iTunes" to get player state
+	get player state
 
 end tell

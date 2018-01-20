@@ -220,6 +220,11 @@ app.on('ready', function () {
             else {
               store.set('anonymizeAlt', 'true');
             }
+            mainWindow.loadURL(url.format({
+              pathname: path.join(__dirname, 'index.html'),
+              protocol: 'file:',
+              slashes: true
+            }));
           }
       }, {
           type: 'separator'
@@ -254,7 +259,14 @@ app.on('ready', function () {
 });
 
 //Listen for track changes
-systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+// if (store.get('player') == "applescript/Embrace/") {
+//   systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
+//     // systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+//     mainWindow.webContents.executeJavaScript('trackChange()');
+//   })
+// }
+systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
+  // systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
   mainWindow.webContents.executeJavaScript('trackChange()');
 })
 
