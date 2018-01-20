@@ -14,6 +14,22 @@ const Menu = electron.Menu
 //For listening for track changes
 const {systemPreferences} = require('electron');
 
+//Preferences storage and recall, plus write defaults if blank (aka first run)
+const Store = require('electron-store');
+const store = new Store();
+if (store.has('player') === false) {
+  store.set('player', 'applescript/Embrace/');
+};
+if (store.has('selectedTheme') === false) {
+  store.set('selectedTheme', 'themeDark');
+};
+if (store.has('imageType') === false) {
+  store.set('imageType', 'default');
+};
+if (store.has('anonymizeAlt') === false) {
+  store.set('anonymizeAlt', 'false');
+};
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -91,6 +107,9 @@ app.on('ready', function () {
                   checked: (store.get('player') == "applescript/Embrace/"),
                   click: () => {
                     store.set('player', 'applescript/Embrace/');
+                    systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
+                      mainWindow.webContents.executeJavaScript('trackChange()');
+                    })
                     mainWindow.loadURL(url.format({
                       pathname: path.join(__dirname, 'index.html'),
                       protocol: 'file:',
@@ -104,6 +123,9 @@ app.on('ready', function () {
                   checked: (store.get('player') == "applescript/iTunes/"),
                   click: () => {
                     store.set('player', 'applescript/iTunes/');
+                    systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+                      mainWindow.webContents.executeJavaScript('trackChange()');
+                    })
                     mainWindow.loadURL(url.format({
                       pathname: path.join(__dirname, 'index.html'),
                       protocol: 'file:',
@@ -258,30 +280,13 @@ app.on('ready', function () {
   Menu.setApplicationMenu(menu);
 });
 
-// //Listen for track changes
-// (store.get('player')) function(err, rtn) {
-//   if (err) {return}
-//   if (rtn) {
-//     console.log(store.get('player'));
-//   }
-
-systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
-  // systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-  mainWindow.webContents.executeJavaScript('trackChange()');
-})
-
-//Preferences storage and recall
-const Store = require('electron-store');
-const store = new Store();
-if (store.has('player') === false) {
-  store.set('player', 'applescript/Embrace/');
-};
-if (store.has('selectedTheme') === false) {
-  store.set('selectedTheme', 'themeDark');
-};
-if (store.has('imageType') === false) {
-  store.set('imageType', 'default');
-};
-if (store.has('anonymizeAlt') === false) {
-  store.set('anonymizeAlt', 'false');
-};
+//Listen for track changes
+if (store.get('player') == "applescript/Embrace/") {
+  systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
+    mainWindow.webContents.executeJavaScript('trackChange()');
+  })
+}
+else
+  systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+    mainWindow.webContents.executeJavaScript('trackChange()');
+  })
