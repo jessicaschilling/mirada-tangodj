@@ -19,5 +19,5 @@ tell application "iTunes"
 	end repeat
 
 
-	get afterCumparsita
+	get {afterCumparsita}
 end tell

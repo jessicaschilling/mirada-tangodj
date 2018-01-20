@@ -2,6 +2,8 @@
 
 tell application "iTunes"
 
-	get player state
+	set playerState to player state as string
+
+	get {playerState}
 
 end tell

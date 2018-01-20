@@ -1,9 +1,5 @@
-const ARTIST = 0;
-const GENRE = 1;
-const SONGX = 0;
-const SONGY = 1;
-
 const trackChange = function () {
+  getTrackInfo();
   getSongCount();
   isPlayerStoppedPaused();
   getNextTanda();
@@ -12,32 +8,67 @@ const trackChange = function () {
   getNowPlayingNew();
 };
 
-// External script: get the name, artist, genre of current song
+// Run all the external AppleScripts and turn their array results into variables
+function getTrackInfo() {
+  applescript.execFile((store.get('player')) + "nowPlayingInfo.applescript", function(err, rtn) {
+    if (err) {return}
+    store.set('nowPlayingName', rtn[0]);
+    store.set('nowPlayingArtist', rtn[1]);
+    store.set('nowPlayingGenre', rtn[2]);
+    store.set('nowPlayingGrouping', rtn[3]);
+    console.log('NOW...' + (store.get('nowPlayingName'))+ (store.get('nowPlayingArtist')) + (store.get('nowPlayingGenre'))+ (store.get('nowPlayingGrouping')))
+  });
+  applescript.execFile((store.get('player')) + "getNextTanda.applescript", function(err, rtn) {
+    if (err) {return}
+    store.set('nextTandaArtist', rtn[0]);
+    store.set('nextTandaGenre', rtn[1]);
+    store.set('nextTandaGrouping', rtn[2]);
+    console.log('NEXT...' + (store.get('nextTandaArtist'))+ (store.get('nextTandaGenre')) + (store.get('nextTandaGrouping')))
+  });
+  applescript.execFile((store.get('player')) + "isPlayerStoppedPaused.applescript", function(err, rtn) {
+    if (err) {return}
+    store.set('playerStoppedPaused', rtn[0]);
+    console.log('STATUS:' + (store.get('playerStoppedPaused')))
+  });
+  applescript.execFile((store.get('player')) + "afterCumparsita.applescript", function(err, rtn) {
+    if (err) {return}
+    store.set('afterCumparsita', rtn[0]);
+    console.log('AFTER?:' + (store.get('afterCumparsita')))
+  });
+  applescript.execFile((store.get('player')) + "getSongCount.applescript", function(err, rtn) {
+    if (err) {return}
+    store.set('songX', rtn[0]);
+    store.set('songY', rtn[1]);
+    console.log('SONG' + (store.get('songX'))+ (store.get('songY')) )
+  });
+}
+
+// PARTIALLY FIXED: External script: get the name, artist, genre of current song
 function getNowPlayingNew() {
   applescript.execFile((store.get('player')) + "nowPlayingInfo.applescript", function(err, rtn) {
     if (err) {return}
     if (rtn) {
-      document.getElementById("nowPlayingArtist").innerHTML = rtn[1] ;
-      document.getElementById("nowPlayingGenre").innerHTML = rtn[2] ;
+      document.getElementById("nowPlayingArtist").innerHTML = store.get('nowPlayingArtist') ;
+      document.getElementById("nowPlayingGenre").innerHTML = store.get('nowPlayingGenre') ;
 
-      // Write the title to the announcement div in case it's an announcement
-      document.getElementById("announcementText").innerHTML = rtn[0] ;
+      // Write the name to the announcement div in case it's an announcement
+      document.getElementById("announcementText").innerHTML = store.get('nowPlayingName') ;
 
       // Look backwards through rtn and add a <br> before the final ( if there is one
-      let finalOpenParenPosition = rtn[0].lastIndexOf('(');
+      let finalOpenParenPosition = store.get('nowPlayingName').lastIndexOf('(');
       if (finalOpenParenPosition > -1) {
-              let modifiedForParen = rtn[0].substring(0, finalOpenParenPosition) + '<br/> (' + rtn[0].substring(finalOpenParenPosition + 1);
+              let modifiedForParen = store.get('nowPlayingName').substring(0, finalOpenParenPosition) + '<br/> (' + store.get('nowPlayingName').substring(finalOpenParenPosition + 1);
               document.getElementById("nowPlayingName").innerHTML = modifiedForParen ;
       }
       else {
-        document.getElementById("nowPlayingName").innerHTML = rtn[0] ;
+        document.getElementById("nowPlayingName").innerHTML = store.get('nowPlayingName') ;
       }
     }
   });
 }
 
 
-// External script: Get array with next-tanda artist and genre, and write to both cortina and nextTanda divs
+// PARTIALLY FIXED ***BUT NEEDS ALT ANYONYMIZER ADDRESSED: External script: Get array with next-tanda artist and genre, and write to both cortina and nextTanda divs
 function getNextTanda() {
   applescript.execFile((store.get('player')) + "getNextTanda.applescript", function(err, rtn) {
     if (err) {return}
@@ -47,21 +78,21 @@ function getNextTanda() {
         rtn[0] = "Alternative";
       }
 
-      document.getElementById("cortinaNextTandaArtist").innerHTML = rtn[ARTIST];
-      document.getElementById("cortinaNextTandaGenre").innerHTML = rtn[GENRE];
+      document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+      document.getElementById("cortinaNextTandaGenre").innerHTML = store.get('nextTandaGenre');
 
       // Write to the nextTanda div, with text appends as needed
-      if (rtn[ARTIST].length >0) {
-        document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;</strong> " + rtn[ARTIST]);
+      if (store.get('nextTandaArtist').length >0) {
+        document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;</strong> " + store.get('nextTandaArtist'));
       }
       else {
-        document.getElementById("nextTandaArtist").innerHTML = rtn[ARTIST];
+        document.getElementById("nextTandaArtist").innerHTML = store.get('nextTandaArtist');
       }
-      if (rtn[GENRE].length >0 && !rtn[GENRE].match("Last Tanda") )  {
-        document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;" + rtn[GENRE]);
+      if (store.get('nextTandaGenre').length >0 && !store.get('nextTandaGenre').match("Last Tanda") )  {
+        document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;" + store.get('nextTandaGenre'));
       }
       else {
-        document.getElementById("nextTandaGenre").innerHTML = rtn[GENRE];
+        document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
       }
     }
   });
@@ -71,18 +102,18 @@ function getNextTanda() {
 function getSongCount() {
   applescript.execFile((store.get('player')) + "getSongCount.applescript", function(err, rtn) {
     if (err) {return}
-    if (rtn[SONGX] > 0 && rtn[SONGY] > 0) { // This prevents visual skip for negative numbers generated by cortinas
-      document.getElementById("songX").innerHTML = rtn[SONGX];
-      document.getElementById("songY").innerHTML = rtn[SONGY];
+    if (store.get('songX') > 0 && store.get('songY') > 0) { // This prevents visual skip for negative numbers generated by cortinas
+      document.getElementById("songX").innerHTML = store.get('songX');
+      document.getElementById("songY").innerHTML = store.get('songY');
     }
   });
 }
 
-// External script: Display image in overlay if player state is stopped or paused
+// PARTIALLY FIXED: External script: Display image in overlay if player state is stopped or paused
 function isPlayerStoppedPaused() {
   applescript.execFile((store.get('player')) + "isPlayerStoppedPaused.applescript", function(err, rtn) {
     if (err) {return}
-    if (rtn !== "playing")  {
+    if (store.get('playerStoppedPaused') !== "playing")  {
       $( "#playerStoppedPaused" ).fadeIn( 300 );
       $( "#playerStoppedPaused" ).css( 'display', 'block' );
     }
@@ -92,39 +123,39 @@ function isPlayerStoppedPaused() {
   });
 }
 
-// External AppleScript: Detect interstitial; if so, display either next-tanda or announcement info and hide nowNext
+
+
+// PARTIALLY FIXED: External AppleScript: Detect interstitial; if so, display either next-tanda or announcement info and hide nowNext
 function isInterstitial() {
   applescript.execFile((store.get('player')) + "detectInterstitial.applescript", function(err, rtn) {
-    if (err) {return}
-    if (rtn[0].match("ortina"))  {
+    if (store.get('nowPlayingGenre').match("ortina"))  {
       $( "#interstitial" ).fadeIn( 300 );
       $( "#interstitial" ).css( 'display', 'flex' );
       document.getElementById("cortina").style.display = "block";
       document.getElementById("announcement").style.display = "none";
       document.getElementById("nowNext").style.display = "none";
     }
-    if (rtn[1].match("nnounc"))  {
+    if (store.get('nowPlayingGrouping').match("nnounc")) {
       $( "#interstitial" ).fadeIn( 300 );
       $( "#interstitial" ).css( 'display', 'flex' );
       document.getElementById("cortina").style.display = "none";
       document.getElementById("announcement").style.display = "block";
       document.getElementById("nowNext").style.display = "none";
     }
-    if (!rtn[1].match("nnounc") && !rtn[0].match("ortina")) {
+    if (!store.get('nowPlayingGrouping').match("nnounc") && !store.get('nowPlayingGenre').match("ortina")) {
       $( "#interstitial" ).fadeOut( 300 );
       document.getElementById("cortina").style.display = "none";
       document.getElementById("announcement").style.display = "none";
       document.getElementById("nowNext").style.display = "block";
     }
   });
-
 }
 
-// External AppleScript: Display thanks announcement if any of last 10 track names contains "umparsita"
+// PARTIALLY FIXED: External AppleScript: Display thanks announcement if any of last 10 track names contains "umparsita"
 function afterCumparsita() {
   applescript.execFile((store.get('player')) + "afterCumparsita.applescript", function(err, rtn) {
     if (err) {return}
-    if (rtn == "yes")  {
+    if (store.get('afterCumparsita') == "yes")  {
       // document.getElementById("afterCumparsita").style.display = "flex";
       $( "#afterCumparsita" ).fadeIn( 300 );
       $( "#afterCumparsita" ).css( 'display', 'flex' );
