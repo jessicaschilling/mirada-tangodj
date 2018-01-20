@@ -4,7 +4,7 @@
 
 //Global styles
 body {
-    font-family:"Proza Libre", "ProzaLibre", arial,helvetica,sans-serif;
+    font-family:"DIN", arial,helvetica,sans-serif;
     margin: 3vh;
     padding: 0;
     height: 94vh;
@@ -50,15 +50,19 @@ body {
 }
 
 #cortinaNextTandaGenre {
-  font-weight: 400;
+  font-weight: 700;
   text-transform: uppercase;
+}
+
+#cortinaNextTandaArtist {
+    margin-top: 0.25em;
 }
 
 #upNext {
   text-transform: uppercase;
   font-weight: 400;
   font-size: 75%;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.45em;
 }
 
 #afterCumparsita {
@@ -81,7 +85,7 @@ body {
 
 #nowPlaying {
     height: 67vh;
-    padding: 4vh 22vw 4vh 4vh;
+    padding: 4vh 23vw 4vh 4vh;
     margin: 0 0 3vh 0;
 }
 
@@ -92,7 +96,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
 }
 
 #ribbon {
@@ -105,7 +108,7 @@ body {
     word-spacing: 100000px;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 900;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -131,7 +134,7 @@ body {
 
 #nowPlayingGenre, #nowPlayingArtist, #nowPlayingName, #nextTandaArtist, #nextTandaGenre {
     margin: 0;
-    line-height: 135%;
+    line-height: 115%;
 }
 
 #nowPlayingGenre {
@@ -139,13 +142,14 @@ body {
     font-weight: 400;
     text-transform: uppercase;
     line-height: 90%;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.3em;
+    margin-top: 0.2em;
 }
 
 #nowPlayingArtist {
     font-size: 5.6vmax;
     font-weight: 800;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.6em;
 }
 
 #nowPlayingName {
@@ -160,7 +164,7 @@ body {
 
 #nextTandaGenre {
     font-size: 3.5vmax;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 #songX, #songY {
@@ -169,11 +173,12 @@ body {
 }
 
 #songX {
-    line-height: 70%;
+    line-height: 65%;
+    margin-top: -1vh;
 }
 
 #songY {
-    line-height: 70%;
+    line-height: 60%;
 }
 
 #songX::before {
