@@ -2,7 +2,7 @@
   "name": "Mirada",
   "version": "3.0.0",
   "description": "A tango-specific visualizer for iTunes or Embrace on macOS",
-  "main": "main.js",
+  "main": "js/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
