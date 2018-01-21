@@ -13,15 +13,13 @@
   <div id="overlay">
     <div id="afterCumparsita">Thank you for dancing!</div>
     <div id="playerStoppedPaused"></div>
-    <div id="interstitial">
-      <div id="cortina">
-        <div id="upNext">Up&nbsp;&nbsp;next ...</div>
-        <div id="cortinaNextTandaGenre"></div>
-        <div id="cortinaNextTandaArtist"></div>
-      </div>
-      <div id="announcement">
-        <div id="announcementText"></div>
-      </div>
+    <div id="cortina">
+      <div id="upNext">Up&nbsp;&nbsp;next ...</div>
+      <div id="cortinaNextTandaGenre"></div>
+      <div id="cortinaNextTandaArtist"></div>
+    </div>
+    <div id="announcement">
+      <div id="announcementText"></div>
     </div>
   </div>
 
@@ -38,13 +36,13 @@
     </div>
 
     <div id="ribbon">
-      <div id="songX">X</div>
-      <div id="songY">Y</div>
+      <div id="songX"></div>
+      <div id="songY"></div>
     </div>
 
   </div>
 
-<!-- This digs out the prefs and applies them on each reload, plus does the main trackChange script  -->
+<!-- This digs out the prefs and applies them on each reload, plus does the main getTrackInfo script  -->
 <script>
 switchTheme(store.get('selectedTheme'));
 if (store.get('imageType') == "default") {
@@ -53,7 +51,7 @@ if (store.get('imageType') == "default") {
 else {
   changeImage(store.get('customImage'));
 }
-trackChange();
+getTrackInfo();
 </script>
 
   </body>

@@ -11,8 +11,10 @@ $config: (
     nextTandaText: #FFFFFF,
     ribbonBackground: #C1C1C1,
     ribbonText: #6C1515,
-    interstitialBackground: #6C1515,
-    interstitialText: #FFFFFF,
+    cortinaBackground: #6C1515,
+    cortinaText: #FFFFFF,
+    announcementBackground: #6C1515,
+    announcementText: #FFFFFF,
     afterCumparsitaBackground: #6C1515,
     afterCumparsitaText: #FFFFFF,
     playerStoppedPausedBackground: #2C2C2C
@@ -27,8 +29,10 @@ $config: (
     nextTandaText: #FFFFFF,
     ribbonBackground: #990000,
     ribbonText: #FFFFFF,
-    interstitialBackground: #2C2C2C,
-    interstitialText: #FFFFFF,
+    cortinaBackground: #2C2C2C,
+    cortinaText: #FFFFFF,
+    announcementBackground: #2C2C2C,
+    announcementText: #FFFFFF,
     afterCumparsitaBackground: #2C2C2C,
     afterCumparsitaText: #FFFFFF,
     playerStoppedPausedBackground: #2C2C2C
@@ -43,8 +47,10 @@ $config: (
     nextTandaText: #FFFFFF,
     ribbonBackground: #d9607c,
     ribbonText: #470718,
-    interstitialBackground: #5E081E,
-    interstitialText: #FFFFFF,
+    cortinaBackground: #5E081E,
+    cortinaText: #FFFFFF,
+    announcementBackground: #5E081E,
+    announcementText: #FFFFFF,
     afterCumparsitaBackground: #5E081E,
     afterCumparsitaText: #FFFFFF,
     playerStoppedPausedBackground: #5E081E
@@ -59,8 +65,10 @@ $config: (
     nextTandaText: #000000,
     ribbonBackground: #d66700,
     ribbonText: #000000,
-    interstitialBackground: #d66700,
-    interstitialText: #000000,
+    cortinaBackground: #d66700,
+    cortinaText: #000000,
+    announcementBackground: #d66700,
+    announcementText: #000000,
     afterCumparsitaBackground: #d66700,
     afterCumparsitaText: #000000,
     playerStoppedPausedBackground: #000000
@@ -75,8 +83,10 @@ $config: (
     nextTandaText: #FFFFFF,
     ribbonBackground: #DDB263,
     ribbonText: #92080c,
-    interstitialBackground: #92080c,
-    interstitialText: #FFFFFF,
+    cortinaBackground: #92080c,
+    cortinaText: #FFFFFF,
+    announcementBackground: #92080c,
+    announcementText: #FFFFFF,
     afterCumparsitaBackground: #92080c,
     afterCumparsitaText: #FFFFFF,
     playerStoppedPausedBackground: #243f15
@@ -133,9 +143,14 @@ $config: (
     border-top: 1.5em solid map-fetch($config, themes $theme ribbonBackground);
   }
 
-  #interstitial.#{$theme} {
-    background-color: map-fetch($config, themes $theme interstitialBackground);
-    color: map-fetch($config, themes $theme interstitialText);
+  #cortina.#{$theme} {
+    background-color: map-fetch($config, themes $theme cortinaBackground);
+    color: map-fetch($config, themes $theme cortinaText);
+  }
+
+  #announcement.#{$theme} {
+    background-color: map-fetch($config, themes $theme announcementBackground);
+    color: map-fetch($config, themes $theme announcementText);
   }
 
   #afterCumparsita.#{$theme} {
