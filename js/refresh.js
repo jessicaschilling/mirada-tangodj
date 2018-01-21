@@ -10,8 +10,17 @@ function getTrackInfo() {
     store.set('afterCumparsita', rtn[5]);
     store.set('songX', rtn[6]);
     store.set('songY', rtn[7]);
-    store.set('nextTandaArtist', rtn[8]);
-    store.set('nextTandaGenre', rtn[9]);
+
+    //Clear next-tanda details if its first-song grouping contains "nnounc"
+    if (rtn[10].match("nnounc")) {
+      store.set('nextTandaArtist', "");
+      store.set('nextTandaGenre', "Announcements");
+    }
+    else {
+      store.set('nextTandaArtist', rtn[8]);
+      store.set('nextTandaGenre', rtn[9]);
+    }
+
     store.set('nextTandaGrouping', rtn[10]);
     console.log('1/5 NOW... ' + (store.get('nowPlayingName'))+ (store.get('nowPlayingArtist')) + (store.get('nowPlayingGenre'))+ (store.get('nowPlayingGrouping')));
     console.log('2/5 STATUS: ' + (store.get('playerStoppedPaused')));
