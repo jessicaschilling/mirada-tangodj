@@ -56,18 +56,17 @@ function writeToNow() {
 // Write next-tanda info to next area
 function writeToNext() {
   if (!store.get('nextTandaGenre').match("Last Tanda")) {
-    document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>" + store.get('nextTandaArtist') + "&nbsp;&nbsp;");
+    if (store.get('anonymizeAlt') == "true" && store.get('nextTandaGrouping').match("#nu") )  {
+      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>Alternative&nbsp;&nbsp;");
+    }
+    else {
+      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>" + store.get('nextTandaArtist') + "&nbsp;&nbsp;");
+    }
   }
     else {
       document.getElementById("nextTandaArtist").innerHTML = (store.get('nextTandaArtist') + "&nbsp;");
     }
     document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
-  // if (store.get('nextTandaGenre').length >0 && !store.get('nextTandaGenre').match("Last Tanda") )  {
-  //   document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
-  // }
-  //   else {
-  //     document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
-  //   }
 }
 
 // Write title to announcement overlay
@@ -77,7 +76,17 @@ function writeToAnnouncement() {
 
 // Write next-tanda info to cortina overlay
 function writeToCortina() {
-  document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+  if (store.get('anonymizeAlt') == "true" && store.get('nextTandaGrouping').match("#nu") ) {
+    if (!store.get('nextTandaArtist').match("Last Tanda") && !store.get('nextTandaArtist').match("Announcements")) {
+      document.getElementById("cortinaNextTandaArtist").innerHTML = "Alternative";
+    }
+    else {
+      document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+    }
+  }
+  else {
+    document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+  }
   document.getElementById("cortinaNextTandaGenre").innerHTML = store.get('nextTandaGenre');
 }
 
