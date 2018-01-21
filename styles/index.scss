@@ -34,13 +34,13 @@ body {
   object-fit: cover;
 }
 
-#interstitial, #afterCumparsita {
+#announcement, #cortina, #afterCumparsita {
    position: fixed;
    height: calc(100% - 6vh);
    width: calc(100% - 6vh);
    padding: 0;
    margin: 3vh;
-   display: none;
+   display:flex;
    align-items: center;
    justify-content: center;
    flex-direction: column;
@@ -76,7 +76,7 @@ body {
   display:none;
 }
 
-#nowPlaying, #nextTanda, #interstitial, #afterCumparsita {
+#nowPlaying, #nextTanda, #announcement, #cortina, #afterCumparsita {
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
   -moz-box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.37);
