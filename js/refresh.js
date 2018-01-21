@@ -1,7 +1,3 @@
-const trackChange = function () {
-  getTrackInfo();
-};
-
 // Run the external AppleScript and write its array results to the store
 function getTrackInfo() {
   applescript.execFile((store.get('player')) + "nowPlayingInfo.applescript", function(err, rtn) {
@@ -14,15 +10,7 @@ function getTrackInfo() {
     store.set('afterCumparsita', rtn[5]);
     store.set('songX', rtn[6]);
     store.set('songY', rtn[7]);
-
-    // Anonymize for alt tandas if needed
-    if (store.get('anonymizeAlt') === "true") {
-      store.set('nextTandaArtist', 'Alternative');
-    }
-    else {
-      store.set('nextTandaArtist', rtn[8]);
-    }
-
+    store.set('nextTandaArtist', rtn[8]);
     store.set('nextTandaGenre', rtn[9]);
     store.set('nextTandaGrouping', rtn[10]);
     console.log('1/5 NOW... ' + (store.get('nowPlayingName'))+ (store.get('nowPlayingArtist')) + (store.get('nowPlayingGenre'))+ (store.get('nowPlayingGrouping')));
@@ -30,9 +18,8 @@ function getTrackInfo() {
     console.log('3/5 AFTER?: ' + (store.get('afterCumparsita')));
     console.log('4/5 SONG ' + (store.get('songX'))+ " of " + (store.get('songY')) );
     console.log('5/5 NEXT...'  + (store.get('nextTandaArtist'))+ (store.get('nextTandaGenre')) + (store.get('nextTandaGrouping')));
+    changeDisplay();
   });
-
-  changeDisplay();
 }
 
 // Write song counts to ribbon
@@ -78,12 +65,11 @@ function writeToAnnouncement() {
   document.getElementById("announcementText").innerHTML = store.get('nowPlayingName') ;
 }
 
-// **NEEDS ALT ANONYMIZATION** Write next-tanda info to cortina overlay
+// Write next-tanda info to cortina overlay
 function writeToCortina() {
   document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
   document.getElementById("cortinaNextTandaGenre").innerHTML = store.get('nextTandaGenre');
 }
-
 
 // Change the display itself
 function changeDisplay() {

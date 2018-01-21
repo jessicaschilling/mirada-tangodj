@@ -108,7 +108,7 @@ app.on('ready', function () {
                   click: () => {
                     store.set('player', 'applescript/Embrace/');
                     systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
-                      mainWindow.webContents.executeJavaScript('trackChange()');
+                      mainWindow.webContents.executeJavaScript('getTrackInfo()');
                     })
                     mainWindow.loadURL(url.format({
                       pathname: path.join(__dirname, 'index.html'),
@@ -124,7 +124,7 @@ app.on('ready', function () {
                   click: () => {
                     store.set('player', 'applescript/iTunes/');
                     systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-                      mainWindow.webContents.executeJavaScript('trackChange()');
+                      mainWindow.webContents.executeJavaScript('getTrackInfo()');
                     })
                     mainWindow.loadURL(url.format({
                       pathname: path.join(__dirname, 'index.html'),
@@ -283,10 +283,10 @@ app.on('ready', function () {
 //Listen for track changes
 if (store.get('player') == "applescript/Embrace/") {
   systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
-    mainWindow.webContents.executeJavaScript('trackChange()');
+    mainWindow.webContents.executeJavaScript('getTrackInfo()');
   })
 }
 else
   systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
-    mainWindow.webContents.executeJavaScript('trackChange()');
+    mainWindow.webContents.executeJavaScript('getTrackInfo()');
   })
