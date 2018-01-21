@@ -13,8 +13,8 @@ function getTrackInfo() {
 
     //Clear next-tanda details if its first-song grouping contains "nnounc"
     if (rtn[10].match("nnounc")) {
-      store.set('nextTandaArtist', "");
-      store.set('nextTandaGenre', "Announcements");
+      store.set('nextTandaArtist', "Announcements");
+      store.set('nextTandaGenre', "");
     }
     else {
       store.set('nextTandaArtist', rtn[8]);
@@ -55,18 +55,19 @@ function writeToNow() {
 
 // Write next-tanda info to next area
 function writeToNext() {
-  if (store.get('nextTandaArtist').length >0) {
-    document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;</strong> " + store.get('nextTandaArtist'));
+  if (!store.get('nextTandaGenre').match("Last Tanda")) {
+    document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>" + store.get('nextTandaArtist') + "&nbsp;&nbsp;");
   }
     else {
-      document.getElementById("nextTandaArtist").innerHTML = store.get('nextTandaArtist');
+      document.getElementById("nextTandaArtist").innerHTML = (store.get('nextTandaArtist') + "&nbsp;");
     }
-  if (store.get('nextTandaGenre').length >0 && !store.get('nextTandaGenre').match("Last Tanda") )  {
-    document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;" + store.get('nextTandaGenre'));
-  }
-    else {
-      document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
-    }
+    document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
+  // if (store.get('nextTandaGenre').length >0 && !store.get('nextTandaGenre').match("Last Tanda") )  {
+  //   document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
+  // }
+  //   else {
+  //     document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
+  //   }
 }
 
 // Write title to announcement overlay
