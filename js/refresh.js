@@ -10,8 +10,17 @@ function getTrackInfo() {
     store.set('afterCumparsita', rtn[5]);
     store.set('songX', rtn[6]);
     store.set('songY', rtn[7]);
-    store.set('nextTandaArtist', rtn[8]);
-    store.set('nextTandaGenre', rtn[9]);
+
+    //Clear next-tanda details if its first-song grouping contains "nnounc"
+    if (rtn[10].match("nnounc")) {
+      store.set('nextTandaArtist', "Announcements");
+      store.set('nextTandaGenre', "");
+    }
+    else {
+      store.set('nextTandaArtist', rtn[8]);
+      store.set('nextTandaGenre', rtn[9]);
+    }
+
     store.set('nextTandaGrouping', rtn[10]);
     console.log('1/5 NOW... ' + (store.get('nowPlayingName'))+ (store.get('nowPlayingArtist')) + (store.get('nowPlayingGenre'))+ (store.get('nowPlayingGrouping')));
     console.log('2/5 STATUS: ' + (store.get('playerStoppedPaused')));
@@ -46,18 +55,18 @@ function writeToNow() {
 
 // Write next-tanda info to next area
 function writeToNext() {
-  if (store.get('nextTandaArtist').length >0) {
-    document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;</strong> " + store.get('nextTandaArtist'));
+  if (!store.get('nextTandaGenre').match("Last Tanda")) {
+    if (store.get('anonymizeAlt') == "true" && store.get('nextTandaGrouping').match("#nu") )  {
+      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>Alternative&nbsp;&nbsp;");
+    }
+    else {
+      document.getElementById("nextTandaArtist").innerHTML = ("<strong>NEXT TANDA:&nbsp;&nbsp;</strong>" + store.get('nextTandaArtist') + "&nbsp;&nbsp;");
+    }
   }
     else {
-      document.getElementById("nextTandaArtist").innerHTML = store.get('nextTandaArtist');
+      document.getElementById("nextTandaArtist").innerHTML = (store.get('nextTandaArtist') + "&nbsp;");
     }
-  if (store.get('nextTandaGenre').length >0 && !store.get('nextTandaGenre').match("Last Tanda") )  {
-    document.getElementById("nextTandaGenre").innerHTML = ("&nbsp;&nbsp;" + store.get('nextTandaGenre'));
-  }
-    else {
-      document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
-    }
+    document.getElementById("nextTandaGenre").innerHTML = store.get('nextTandaGenre');
 }
 
 // Write title to announcement overlay
@@ -67,7 +76,17 @@ function writeToAnnouncement() {
 
 // Write next-tanda info to cortina overlay
 function writeToCortina() {
-  document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+  if (store.get('anonymizeAlt') == "true" && store.get('nextTandaGrouping').match("#nu") ) {
+    if (!store.get('nextTandaArtist').match("Last Tanda") && !store.get('nextTandaArtist').match("Announcements")) {
+      document.getElementById("cortinaNextTandaArtist").innerHTML = "Alternative";
+    }
+    else {
+      document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+    }
+  }
+  else {
+    document.getElementById("cortinaNextTandaArtist").innerHTML = store.get('nextTandaArtist');
+  }
   document.getElementById("cortinaNextTandaGenre").innerHTML = store.get('nextTandaGenre');
 }
 
