@@ -121,7 +121,7 @@ function changeDisplay() {
   else {
 
     // If (player state is playing and) it is after Cumparsita
-    if (store.get('afterCumparsita') === "yes" ) {
+    if (store.get('afterCumparsita').match("yes") ) {
       $( "#playerStoppedPaused" ).hide();
       $( "#afterCumparsita" ).fadeIn( 300 );
       $( "#nowNext" ).hide();
