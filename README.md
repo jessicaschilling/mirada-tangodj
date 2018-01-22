@@ -1,20 +1,45 @@
-# mirada-standalone
+# mirada-tangodj
 
-**A now-playing and next-tanda visualizer for tango DJs using iTunes on macOS.**
+**A now-playing and next-tanda visualizer for tango DJs on macOS using iTunes or Embrace**
 
-Mirada launches a standalone application that displays the following info for your dancers (and is best displayed on an external monitor):
+##What Mirada does
 
-- Current song's genre, artist and title (with parenthetical items at the end of title moved to their own line).
-- How many songs are in the current tanda, and what number the current song is (this requires your cortinas' genre tag to be "Cortina" in order to work correctly).
-- The genre and artist of the first song in the next tanda (again, requires cortina genres to be "Cortina").
-- When a cortina is playing, the "next tanda" box expands to fit the entire screen.
-- When a track with "announcement" in the grouping field is played, the name of the track is the only item displayed (this is useful for demos, background music, etc).
-- If desired, "next tanda" mode can be switched off, and the screen will only display information on the currently playing song.
-- Option can be turned on for "anonymizing" alternative tandas in the next-tanda box by replacing artist with "Alternative" (good for mixed alt/trad events, requires alternative tracks to be labeled "#nu" in grouping field)
-- When iTunes is paused or stopped, a background image of your choice appears.
-- Different color schemes can be applied depending on light conditions, holidays, etc.
+Mirada launches a standalone application that displays the following info for your dancers for use on an external monitor or projection screen:
 
-This application uses AppleScript to extract information from iTunes, with the exception of a subscription to `com.apple.iTunes.playerInfo` to detect change events. It's built using Electron -- [learn more about Electron here](http://electron.atom.io).
+- When a **song** is playing, Mirada displays the following:
+  - Current song's genre, artist and title (with parenthetical items at the end of title moved to their own line, for those who store year/singer info in the title field).
+  - How many songs are in the current tanda, and what number the current song is.
+  - The genre and artist of the first song in the next tanda or, if the next tanda is an announcement or the last tanda, the appropriate legend.
+  - If the current tanda is the last tanda, the next-tanda area simply displays *"Last Tanda"*.
+- When a **cortina** is playing, Mirada displays the legend *"UP NEXT ..."* with the genre and artist of the first song in the next tanda. If the next tanda is an announcement or the last tanda, that legend displays instead.
+- When an **announcement** is playing, Mirada displays the title of the track (this is useful for demos, background music, etc -- simply rename the title to a welcome message or similar).
+- For mixed **alternative/traditional** milongas, Mirada enables you to replace the artist info in the next-tanda area and the cortina screen with *"Alternative"*.
+- If "La Cumparsita" has been played anytime in the last 10 tracks, Mirada displays a **thank-you message** (useful if you play background music after the end of a milonga).
+- If no music is playing, a **background image** of your choice appears.
+- A variety of **color schemes** are available to customize for light conditions, holiday themes, etc.
+- The **source player** can be switched to either iTunes or Embrace as desired.
+
+##How to make Mirada work for you
+
+Mirada more or less works automagically, but does require a bit of configuration in your source library:
+
+- For cortinas, tanda lengths, and next-tanda info to be correctly detected, your cortinas must have a genre tag of `Cortina`
+- For announcements to be correctly detected, announcement tracks' grouping tag must contain `announcement`
+- For the alternative-anonymization feature to work correctly, alternative tracks' grouping tag must contain `#nu`
+
+
+## Tech details and thanks
+Mirada is built using [Electron Forge](https://electronforge.io) and relies heavily on a few Node modules to do its thing:
+
+- [run-applescript](https://www.npmjs.com/package/run-applescript) to talk to iTunes and Embrace
+- [electron-store](https://www.npmjs.com/package/electron-store) for variables and preferences
+
+It also subscribes to `com.apple.iTunes.playerInfo` and/or `com.iccir.Embrace.playerUpdate` to detect change events and kick off the screen refresh.
+
+Huge thanks are in order to [Eric Scace](https://github.com/ericlscace) for invaluable development assistance and to [Ricci Adams](https://github.com/iccir), creator of [Embrace](https://www.ricciadams.com/projects/embrace), for making enhancements to his already-fantastic app in order to allow Mirada to converse with it better.
+
+## Why "Mirada"?
+Most tango dancers are familiar with the concept of *cabeceo*, in which the leader "asks" the follower to dance by making eye contact. The concept of *mirada* may be less known, but grants the follower the same power to seek out a leader's gaze -- and levelling an often-gendered playing field. This Mirada app also seeks to level the field for dancers by giving everyone at a milonga musical information that makes for a better experience ... and encourages dancers to learn about tango music in the process!
 
 ## License
 

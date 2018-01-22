@@ -1,92 +1,89 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
-// IPC listener for menu items
-const {ipcMain} = require('electron')
-// For the About dialog box
-const dialog = require('electron').dialog
-const path = require('path')
-const url = require('url')
-// For reworking menus that differ from standard
-const Menu = electron.Menu
-//For listening for track changes
-const {systemPreferences} = require('electron');
+import { app, BrowserWindow, Menu } from 'electron';
 
-//Preferences storage and recall, plus write defaults if blank (aka first run)
+// IPC listener for menu items
+const { ipcMain } = require('electron');
+// For the About dialog box
+const dialog = require('electron').dialog;
+const path = require('path');
+const url = require('url');
+
+// For listening for track changes
+const { systemPreferences } = require('electron');
+
+// Preferences storage and recall, plus write defaults if blank (aka first run)
 const Store = require('electron-store');
+
 const store = new Store();
 if (store.has('player') === false) {
-  store.set('player', 'applescript/Embrace/');
-};
+  store.set('player', 'Embrace');
+}
 if (store.has('selectedTheme') === false) {
   store.set('selectedTheme', 'themeDark');
-};
+}
 if (store.has('imageType') === false) {
   store.set('imageType', 'default');
-};
+}
 if (store.has('anonymizeAlt') === false) {
   store.set('anonymizeAlt', 'false');
-};
+}
+
+// Handle creating/removing shortcuts on Windows when installing/uninstalling.
+if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
+  app.quit();
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 
-function createWindow () {
+const createWindow = () => {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }));
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  // // Open the DevTools.
+  // mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function () {
+  mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    mainWindow = null
-  })
-}
-
+    mainWindow = null;
+  });
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
 
-app.on('activate', function () {
+app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
 
 // In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-
+// code. You can also put them in separate files and import them here.
 // Custom menus
 app.on('ready', function () {
-
   const menuTemplate = [
     {
       label: 'Mirada',
@@ -94,7 +91,7 @@ app.on('ready', function () {
         {
           label: 'About Mirada',
           click: () => {
-            dialog.showMessageBox({ message: "Mirada v. 3.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling",buttons: ["OK"] });
+            dialog.showMessageBox({ message: "Mirada v. 3.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling", buttons: ["OK"] });
           }
         }, {
           type: 'separator'
@@ -104,33 +101,25 @@ app.on('ready', function () {
                 {
                   label: 'Embrace',
                   type: 'radio',
-                  checked: (store.get('player') == "applescript/Embrace/"),
+                  checked: (store.get('player') == "Embrace"),
                   click: () => {
-                    store.set('player', 'applescript/Embrace/');
+                    store.set('player', 'Embrace');
                     systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
                       mainWindow.webContents.executeJavaScript('getTrackInfo()');
                     })
-                    mainWindow.loadURL(url.format({
-                      pathname: path.join(__dirname, 'index.html'),
-                      protocol: 'file:',
-                      slashes: true
-                    }));
+                    mainWindow.loadURL(`file://${__dirname}/index.html`);
                   }
                 },
                 {
                   label: 'iTunes',
                   type: 'radio',
-                  checked: (store.get('player') == "applescript/iTunes/"),
+                  checked: (store.get('player') == "iTunes"),
                   click: () => {
-                    store.set('player', 'applescript/iTunes/');
+                    store.set('player', 'iTunes');
                     systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
                       mainWindow.webContents.executeJavaScript('getTrackInfo()');
                     })
-                    mainWindow.loadURL(url.format({
-                      pathname: path.join(__dirname, 'index.html'),
-                      protocol: 'file:',
-                      slashes: true
-                    }));
+                    mainWindow.loadURL(`file://${__dirname}/index.html`);
                   }
                 }
               ]
@@ -242,11 +231,7 @@ app.on('ready', function () {
             else {
               store.set('anonymizeAlt', 'true');
             }
-            mainWindow.loadURL(url.format({
-              pathname: path.join(__dirname, 'index.html'),
-              protocol: 'file:',
-              slashes: true
-            }));
+            mainWindow.loadURL(`file://${__dirname}/index.html`);
           }
       }, {
           type: 'separator'
@@ -258,21 +243,21 @@ app.on('ready', function () {
     {
       label: 'View',
       submenu: [
-        {role: 'reload'},
-        {role: 'toggledevtools'},
-        {type: 'separator'},
-        {role: 'resetzoom'},
-        {role: 'zoomin'},
-        {role: 'zoomout'},
-        {type: 'separator'},
-        {role: 'togglefullscreen'}
+        { role: 'reload' },
+        { role: 'toggledevtools' },
+        { type: 'separator' },
+        { role: 'resetzoom' },
+        { role: 'zoomin' },
+        { role: 'zoomout' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
       ]
     },
     {
       role: 'window',
       submenu: [
-        {role: 'minimize'},
-        {role: 'zoom'},
+        { role: 'minimize' },
+        { role: 'zoom' },
       ]
     },
   ];
@@ -280,8 +265,8 @@ app.on('ready', function () {
   Menu.setApplicationMenu(menu);
 });
 
-//Listen for track changes
-if (store.get('player') == "applescript/Embrace/") {
+// Listen for track changes
+if (store.get('player') == "Embrace") {
   systemPreferences.subscribeNotification('com.iccir.Embrace.playerUpdate', () => {
     mainWindow.webContents.executeJavaScript('getTrackInfo()');
   })

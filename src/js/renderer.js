@@ -6,7 +6,7 @@
 const { ipcRenderer } = require('electron');
 
 // For AppleScript
-const applescript = require('applescript');
+const runApplescript = require('run-applescript');
 
 // jQuery for fade transitions
 const $ = require('jQuery');

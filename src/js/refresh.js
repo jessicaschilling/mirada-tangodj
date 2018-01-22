@@ -1,7 +1,25 @@
+// Turn the external AppleScript files into enormous strings
+const nowPlayingInfoITunes = require('./applescript/iTunes/nowPlayingInfo');
+store.set('nowPlayingInfoITunes', nowPlayingInfoITunes);
+const nowPlayingInfoEmbrace = require('./applescript/embrace/nowPlayingInfo');
+store.set('nowPlayingInfoEmbrace', nowPlayingInfoEmbrace);
+
 // Run the external AppleScript and write its array results to the store
 function getTrackInfo() {
-  applescript.execFile((store.get('player')) + "nowPlayingInfo.applescript", function(err, rtn) {
-    if (err) { console.log("nowPlayingInfo error"); }
+
+  // See which player is the active one
+  if (store.get('player') == "iTunes") {
+    store.set('nowPlayingInfo', nowPlayingInfoITunes);
+  }
+  else {
+    store.set('nowPlayingInfo', nowPlayingInfoEmbrace);
+  }
+
+  (async () => {
+    const result = await runApplescript(store.get('nowPlayingInfo'));
+    const rtn = result.split(",")
+    console.log(rtn);
+
     store.set('playerStoppedPaused', rtn[0]);
     store.set('nowPlayingName', rtn[1]);
     store.set('nowPlayingArtist', rtn[2]);
@@ -11,7 +29,7 @@ function getTrackInfo() {
     store.set('songX', rtn[6]);
     store.set('songY', rtn[7]);
 
-    //Clear next-tanda details if its first-song grouping contains "nnounc"
+    // Clear next-tanda details if its first-song grouping contains "nnounc"
     if (rtn[10].match("nnounc")) {
       store.set('nextTandaArtist', "Announcements");
       store.set('nextTandaGenre', "");
@@ -28,7 +46,7 @@ function getTrackInfo() {
     console.log('4/5 SONG ' + (store.get('songX'))+ " of " + (store.get('songY')) );
     console.log('5/5 NEXT...'  + (store.get('nextTandaArtist'))+ (store.get('nextTandaGenre')) + (store.get('nextTandaGrouping')));
     changeDisplay();
-  });
+    })();
 }
 
 // Write song counts to ribbon

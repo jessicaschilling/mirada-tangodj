@@ -1,12 +1,16 @@
 {
   "name": "Mirada",
+  "productName": "Mirada",
   "version": "3.0.0",
   "description": "A tango-specific visualizer for iTunes or Embrace on macOS",
-  "main": "main.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint src --color"
   },
-  "repository": "https://github.com/jessicaschilling/mirada-standalone",
   "keywords": [
     "mirada",
     "tango",
@@ -17,14 +21,56 @@
   ],
   "author": "Jessica Schilling",
   "license": "GPL-3.0",
-  "devDependencies": {
-    "electron": "~1.7.8",
-    "electron-prebuilt-compile": "^1.8.2-beta.3"
+  "config": {
+    "forge": {
+      "electronPackagerConfig": {
+        "packageManager": "npm",
+        "icon": "src/img/icons/mac/icon.png.icns"
+      },
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronWinstallerConfig": {
+        "name": "Mirada"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "Mirada"
+      }
+    }
   },
   "dependencies": {
-    "applescript": "^1.0.0",
+    "electron-compile": "^6.4.2",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^1.3.0",
-    "jquery": "^3.2.1",
-    "underscore": "^1.8.3"
+    "jquery": "^3.3.1",
+    "run-applescript": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^4.2.0",
+    "electron-prebuilt-compile": "1.8.2-beta.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.5.1"
   }
 }
