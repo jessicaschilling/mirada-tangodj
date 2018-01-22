@@ -119,7 +119,7 @@ end if \n\
 end repeat \n\
 \n\
 -- Put it all in a big array \n\
-set nowPlayingInfo to {playerState, nowPlayingName, nowPlayingArtist, nowPlayingGenre, nowPlayingGrouping, afterCumparsita, songX, songY, nextTandaArtist, nextTandaGenre, nextTandaGrouping} \n\
+set nowPlayingInfo to {playerState, "@@", nowPlayingName, "@@", nowPlayingArtist, "@@", nowPlayingGenre, "@@", nowPlayingGrouping, "@@", afterCumparsita, "@@", songX, "@@", songY, "@@", nextTandaArtist, "@@", nextTandaGenre, "@@", nextTandaGrouping} \n\
 \n\
 end tell \n\
 ';

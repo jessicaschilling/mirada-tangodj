@@ -17,7 +17,7 @@ function getTrackInfo() {
 
   (async () => {
     const result = await runApplescript(store.get('nowPlayingInfo'));
-    const rtn = result.split(",")
+    const rtn = result.split(", @@,")
     console.log(rtn);
 
     store.set('playerStoppedPaused', rtn[0]);
