@@ -2,7 +2,7 @@
 
 **A now-playing and next-tanda visualizer for tango DJs on macOS using iTunes or Embrace**
 
-##What Mirada does
+## What Mirada does
 
 Mirada launches a standalone application that displays the following info for your dancers for use on an external monitor or projection screen:
 
@@ -19,7 +19,7 @@ Mirada launches a standalone application that displays the following info for yo
 - A variety of **color schemes** are available to customize for light conditions, holiday themes, etc.
 - The **source player** can be switched to either iTunes or Embrace as desired.
 
-##How to make Mirada work for you
+## How to make Mirada work for you
 
 Mirada more or less works automagically, but does require a bit of configuration in your source library:
 
