@@ -24,7 +24,8 @@
   "config": {
     "forge": {
       "electronPackagerConfig": {
-        "packageManager": "npm"
+        "packageManager": "npm",
+        "icon": "src/img/icons/mac/icon.png.icns"
       },
       "make_targets": {
         "win32": [
