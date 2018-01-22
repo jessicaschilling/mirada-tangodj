@@ -1,4 +1,10 @@
 import { app, BrowserWindow, Menu } from 'electron';
+import { addBypassChecker } from 'electron-compile';
+
+// Allow display of local images
+addBypassChecker((filePath) => {
+  return filePath.indexOf(app.getAppPath()) === -1 && (/.jpg/.test(filePath) || /.png/.test(filePath) || /.gif/.test(filePath) || /.svg/.test(filePath));
+});
 
 // IPC listener for menu items
 const { ipcMain } = require('electron');
