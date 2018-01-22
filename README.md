@@ -39,7 +39,7 @@ It also subscribes to `com.apple.iTunes.playerInfo` and/or `com.iccir.Embrace.pl
 Huge thanks are in order to [Eric Scace](https://github.com/ericlscace) for invaluable development assistance and to [Ricci Adams](https://github.com/iccir), creator of [Embrace](https://www.ricciadams.com/projects/embrace), for making enhancements to his already-fantastic app in order to allow Mirada to converse with it better.
 
 ## Why "Mirada"?
-Most tango dancers are familiar with the concept of *cabeceo*, in which the leader "asks" the follower to dance by making eye contact. The concept of *mirada* may be less known, but grants the follower the same power to seek out a leader's gaze -- and levelling an often-gendered playing field. This Mirada app also seeks to level the field for dancers by giving everyone at a milonga musical information that makes for a better experience ... and encourages dancers to learn about tango music in the process!
+Most tango dancers are familiar with the concept of *cabeceo*, in which the leader "asks" the follower to dance by making eye contact. The concept of *mirada* may be less known, but grants the follower the same power to seek out a leader's gaze -- thereby leveling an often-gendered playing field. This Mirada app also seeks to level the field for dancers by giving everyone at a milonga musical information that makes for a better experience ... and encourages dancers to learn about tango music in the process!
 
 ## License
 
