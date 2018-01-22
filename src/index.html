@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/renderer.js"></script>
+    <script type="text/javascript" src="js/refresh.js"></script>
+    <link rel="stylesheet" href="styles/index.scss">
+    <title>Mirada</title>
   </head>
-  <body>
-    Well hey there!!!
+
+  <body id="background">
+
+  <div id="overlay">
+    <div id="afterCumparsita">Thank you for dancing!</div>
+    <div id="playerStoppedPaused"></div>
+    <div id="cortina">
+      <div id="upNext">Up&nbsp;&nbsp;next ...</div>
+      <div id="cortinaNextTandaGenre"></div>
+      <div id="cortinaNextTandaArtist"></div>
+    </div>
+    <div id="announcement">
+      <div id="announcementText"></div>
+    </div>
+  </div>
+
+  <div id="nowNext">
+
+    <div id="nowPlaying">
+      <div id="nowPlayingGenre"></div>
+      <div id="nowPlayingArtist"></div>
+      <div id="nowPlayingName"></div>
+    </div>
+
+    <div id="nextTanda">
+      <div><span id="nextTandaArtist"></span><span id="nextTandaGenre"></span></div>
+    </div>
+
+    <div id="ribbon">
+      <div id="songX"></div>
+      <div id="songY"></div>
+    </div>
+
+  </div>
+
+<!-- This digs out the prefs and applies them on each reload, plus does the main getTrackInfo script  -->
+<script>
+switchTheme(store.get('selectedTheme'));
+if (store.get('imageType') == "default") {
+  changeImage("img/bandoneon.jpg");
+}
+else {
+  changeImage(store.get('customImage'));
+}
+getTrackInfo();
+</script>
+
   </body>
 </html>
