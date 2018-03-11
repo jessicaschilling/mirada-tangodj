@@ -32,7 +32,7 @@ set songX to "0" as integer \n\
 set songYSub to "0" as integer \n\
 \n\
 repeat \n\
-if genre of track (songCountX) of current playlist contains "ortina" then \n\
+if genre of track (songCountX) of current playlist contains "ortina" or grouping of track (songCountX) of current playlist contains "nnounc" then \n\
 exit repeat \n\
 else \n\
 set songCountX to (songCountX + -1) \n\

@@ -46,7 +46,7 @@ set songX to "0" as integer \n\
 set songYSub to "0" as integer \n\
 \n\
 repeat \n\
-if genre of track (songCountX) contains "ortina" then \n\
+if genre of track (songCountX) contains "ortina" or grouping of track (songCountX) contains "nnounc" then \n\
 exit repeat \n\
 else \n\
 set songCountX to (songCountX + -1) \n\
