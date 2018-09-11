@@ -132,7 +132,7 @@ if title of track (findCortinaIndex) contains "umparsita" then \n\
 set nextTandaArtist to "" \n\
 set nextTandaGenre to "Last Tanda" \n\
 set nextTandaGrouping to "" \n\
--- exit repeat \n\
+exit repeat \n\
 end if \n\
 end if \n\
 set findCortinaIndex to (findCortinaIndex + 1) \n\
