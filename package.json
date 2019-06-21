@@ -58,7 +58,7 @@
     "electron-compile": "^6.4.2",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^1.3.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "run-applescript": "^3.1.0"
   },
   "devDependencies": {
