@@ -1,4 +1,4 @@
-const nowPlayingInfoITunes = 'tell application "iTunes" \n\
+const nowPlayingInfoMusic = 'tell application "Music" \n\
 \n\
 -- get now-playing basics \n\
 set playerState to player state as string \n\
@@ -123,4 +123,4 @@ set nowPlayingInfo to {playerState, "@@", nowPlayingName, "@@", nowPlayingArtist
 \n\
 end tell \n\
 ';
-module.exports = nowPlayingInfoITunes;
+module.exports = nowPlayingInfoMusic;
