@@ -97,7 +97,7 @@ app.on('ready', function () {
         {
           label: 'About Mirada',
           click: () => {
-            dialog.showMessageBox({ message: "Mirada v. 3.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling", buttons: ["OK"] });
+            dialog.showMessageBox({ message: "Mirada v. 4.0\n\nA now-playing and next-tanda visualizer for tango DJs, made with love by Jessica 'La Vitrolera' Schilling", buttons: ["OK"] });
           }
         }, {
           type: 'separator'
@@ -117,12 +117,12 @@ app.on('ready', function () {
                   }
                 },
                 {
-                  label: 'iTunes',
+                  label: 'Music',
                   type: 'radio',
-                  checked: (store.get('player') == "iTunes"),
+                  checked: (store.get('player') == "Music"),
                   click: () => {
-                    store.set('player', 'iTunes');
-                    systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+                    store.set('player', 'Music');
+                    systemPreferences.subscribeNotification('com.apple.Music.playerInfo', () => {
                       mainWindow.webContents.executeJavaScript('getTrackInfo()');
                     })
                     mainWindow.loadURL(`file://${__dirname}/index.html`);
@@ -278,6 +278,6 @@ if (store.get('player') == "Embrace") {
   })
 }
 else
-  systemPreferences.subscribeNotification('com.apple.iTunes.playerInfo', () => {
+  systemPreferences.subscribeNotification('com.apple.Music.playerInfo', () => {
     mainWindow.webContents.executeJavaScript('getTrackInfo()');
   })

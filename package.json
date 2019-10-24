@@ -1,8 +1,8 @@
 {
   "name": "Mirada",
   "productName": "Mirada",
-  "version": "3.0.0",
-  "description": "A tango-specific visualizer for iTunes or Embrace on macOS",
+  "version": "4.0.0",
+  "description": "A tango-specific visualizer for Music or Embrace on macOS",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -15,7 +15,7 @@
     "mirada",
     "tango",
     "tanda",
-    "itunes",
+    "music",
     "embrace",
     "macos"
   ],

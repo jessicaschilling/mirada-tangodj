@@ -1,6 +1,6 @@
 # mirada-tangodj
 
-**A now-playing and next-tanda visualizer for tango DJs on macOS using iTunes or Embrace**
+**A now-playing and next-tanda visualizer for tango DJs on macOS using Music or Embrace**
 
 ## What Mirada does
 
@@ -17,7 +17,7 @@ Mirada launches a standalone application that displays the following info for yo
 - If "La Cumparsita" has been played anytime in the last 10 tracks, Mirada displays a **thank-you message** (useful if you play background music after the end of a milonga).
 - If no music is playing, a **background image** of your choice appears.
 - A variety of **color schemes** are available to customize for light conditions, holiday themes, etc.
-- The **source player** can be switched to either iTunes or Embrace as desired.
+- The **source player** can be switched to either Music or Embrace as desired.
 
 ## How to make Mirada work for you
 
@@ -31,10 +31,10 @@ Mirada more or less works automagically, but does require a bit of configuration
 ## Tech details and thanks
 Mirada is built using [Electron Forge](https://electronforge.io) and relies heavily on a few Node modules to do its thing:
 
-- [run-applescript](https://www.npmjs.com/package/run-applescript) to talk to iTunes and Embrace
+- [run-applescript](https://www.npmjs.com/package/run-applescript) to talk to Music and Embrace
 - [electron-store](https://www.npmjs.com/package/electron-store) for variables and preferences
 
-It also subscribes to `com.apple.iTunes.playerInfo` and/or `com.iccir.Embrace.playerUpdate` to detect change events and kick off the screen refresh.
+It also subscribes to `com.apple.Music.playerInfo` and/or `com.iccir.Embrace.playerUpdate` to detect change events and kick off the screen refresh.
 
 Huge thanks are in order to [Eric Scace](https://github.com/ericlscace) for invaluable development assistance and to [Ricci Adams](https://github.com/iccir), creator of [Embrace](https://www.ricciadams.com/projects/embrace), for making enhancements to his already-fantastic app in order to allow Mirada to converse with it better.
 

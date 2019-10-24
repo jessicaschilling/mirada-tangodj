@@ -1,6 +1,6 @@
 // Turn the external AppleScript files into enormous strings
-const nowPlayingInfoITunes = require('./applescript/iTunes/nowPlayingInfo');
-store.set('nowPlayingInfoITunes', nowPlayingInfoITunes);
+const nowPlayingInfoMusic = require('./applescript/Music/nowPlayingInfo');
+store.set('nowPlayingInfoMusic', nowPlayingInfoMusic);
 const nowPlayingInfoEmbrace = require('./applescript/embrace/nowPlayingInfo');
 store.set('nowPlayingInfoEmbrace', nowPlayingInfoEmbrace);
 
@@ -8,8 +8,8 @@ store.set('nowPlayingInfoEmbrace', nowPlayingInfoEmbrace);
 function getTrackInfo() {
 
   // See which player is the active one
-  if (store.get('player') == "iTunes") {
-    store.set('nowPlayingInfo', nowPlayingInfoITunes);
+  if (store.get('player') == "Music") {
+    store.set('nowPlayingInfo', nowPlayingInfoMusic);
   }
   else {
     store.set('nowPlayingInfo', nowPlayingInfoEmbrace);
